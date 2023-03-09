@@ -8,10 +8,7 @@
     "access": "public"
   },
   "exports": {
-    ".": {
-      "node": "./src/node.js",
-      "browser": "./src/browser.js"
-    }
+    ".": "./index.js"
   },
   "scripts": {
     "api": "jsdoc-to-readme --src index.js",
