@@ -5,7 +5,7 @@ Simple generic utilities (type check, common math functions, etc.)
 ## Install
 
 ```
-npm install --save @ircam/utils
+npm install --save @ircam/sc-utils
 ```
 
 ## API
