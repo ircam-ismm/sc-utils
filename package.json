@@ -1,6 +1,6 @@
 {
   "name": "@ircam/sc-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Benjamin Matuszewski",
   "description": "Set of simple generic utilities (type check, common math functions, etc.)",
   "type": "module",
