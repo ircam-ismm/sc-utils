@@ -10,7 +10,7 @@ import isPlainObj from 'is-plain-obj';
  * Check if the platform is a browser or a node process
  * @return {boolean}
  * @example
- * import { isBrowser } from '@ircam/utils';
+ * import { isBrowser } from '@ircam/sc-utils';
  * isBrowser();
  * > true|false
  */
@@ -24,7 +24,7 @@ export const isBrowser = new Function('try {return this===window;}catch(e){ retu
  * Create a iterator of incrementing ids
  * @return {Iterator}
  * @example
- * import { idGenerator } from '@ircam/utils';
+ * import { idGenerator } from '@ircam/sc-utils';
  * const generator = idGenerator();
  * const id = generator.next().value
  */
@@ -38,6 +38,19 @@ export function* idGenerator() {
   }
 }
 
+/**
+ * Waits for given number of milliseconds
+ * @param {Number} ms - Number of milliseconds to wait
+ * @return {Promise}
+ * @example
+ * import { delay } from '@ircam/sc-utils';
+ * // wait for 1 second
+ * await delay(1000);
+ */
+export function delay(ms) {
+  return new Promise(resolve, setTimeout(resolve, ms));
+}
+
 // ---------------------------------------------------
 // Type check
 // ---------------------------------------------------
@@ -47,7 +60,7 @@ export function* idGenerator() {
  * @param {*} val - Value to check
  * @return {boolean}
  * @example
- * import { isString } from '@ircam/utils';
+ * import { isString } from '@ircam/sc-utils';
  * isString('test');
  * > true
  */
@@ -60,7 +73,7 @@ export function isString(val) {
  * @param {*} val - Value to check
  * @return {boolean}
  * @example
- * import { isFunction } from '@ircam/utils';
+ * import { isFunction } from '@ircam/sc-utils';
  * isFunction(() => {}));
  * > true
  */
@@ -74,7 +87,7 @@ export function isFunction(func) {
  * @param {*} val - Value to check
  * @return {boolean}
  * @example
- * import { isObject } from '@ircam/utils';
+ * import { isObject } from '@ircam/sc-utils';
  * isObject({ a: 1 });
  * > true
  */
@@ -82,6 +95,28 @@ export function isPlainObject(obj) {
   return isPlainObj(obj);
 }
 
+/**
+ * Check if the value is a TypedArray
+ * @param {*} val - Value to check
+ * @return {boolean}
+ * @example
+ * import { isTypedArray } from '@ircam/sc-utils';
+ * isTypedArray(new Float32Array([1, 2, 3]));
+ * > true
+ */
+export function isTypedArray(arr) {
+  return (
+       arr instanceof Int8Array
+    || arr instanceof Int16Array
+    || arr instanceof Int32Array
+    || arr instanceof Uint8Array
+    || arr instanceof Uint8ClampedArray
+    || arr instanceof Uint16Array
+    || arr instanceof Uint32Array
+    || arr instanceof Float32Array
+    || arr instanceof Float64Array
+  )
+}
 
 // ---------------------------------------------------
 // Maths
@@ -92,7 +127,7 @@ export function isPlainObject(obj) {
  * @param {number} val - Value to convert
  * @return {number}
  * @example
- * import { decibelToLinear } from '@ircam/utils';
+ * import { decibelToLinear } from '@ircam/sc-utils';
  * decibelToLinear(0);
  * > 1
  */
@@ -105,7 +140,7 @@ export function decibelToLinear(val) {
  * @param {number} val - Value to convert
  * @return {number}
  * @example
- * import { decibelToPower } from '@ircam/utils';
+ * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
  * > 1
  */
@@ -118,7 +153,7 @@ export function decibelToPower(val) {
  * @param {number} val - Value to convert
  * @return {number}
  * @example
- * import { decibelToPower } from '@ircam/utils';
+ * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
  * > 1
  */
@@ -131,7 +166,7 @@ export function linearToDecibel(val) {
  * @param {number} val - Value to convert
  * @return {number}
  * @example
- * import { decibelToPower } from '@ircam/utils';
+ * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
  * > 1
  */
@@ -149,7 +184,7 @@ export function powerToDecibel(val) {
  * @param {boolean} [clamp=false] - Clamp output
  * @return {Function}
  * @example
- * import { scale } from '@ircam/utils';
+ * import { scale } from '@ircam/sc-utils';
  * const myScale = scale(0, 1, 50, 100);
  * myScale(0.5);
  * > 75

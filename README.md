@@ -26,6 +26,9 @@ npm install --save @ircam/sc-utils
 <dt><a href="#idGenerator">idGenerator()</a> ⇒ <code>Iterator</code></dt>
 <dd><p>Create a iterator of incrementing ids</p>
 </dd>
+<dt><a href="#delay">delay(ms)</a> ⇒ <code>Promise</code></dt>
+<dd><p>Waits for given number of milliseconds</p>
+</dd>
 <dt><a href="#isString">isString(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a string</p>
 </dd>
@@ -34,6 +37,9 @@ npm install --save @ircam/sc-utils
 </dd>
 <dt><a href="#isPlainObject">isPlainObject(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a Plain Old Javascript Object (POJO)</p>
+</dd>
+<dt><a href="#isTypedArray">isTypedArray(val)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if the value is a TypedArray</p>
 </dd>
 <dt><a href="#decibelToLinear">decibelToLinear(val)</a> ⇒ <code>number</code></dt>
 <dd><p>Convert a dB into linear gain (i.e. gain)</p>
@@ -60,7 +66,7 @@ Check if the platform is a browser or a node process
 **Kind**: global constant  
 **Example**  
 ```js
-import { isBrowser } from '@ircam/utils';
+import { isBrowser } from '@ircam/sc-utils';
 isBrowser();
 > true|false
 ```
@@ -72,9 +78,26 @@ Create a iterator of incrementing ids
 **Kind**: global function  
 **Example**  
 ```js
-import { idGenerator } from '@ircam/utils';
+import { idGenerator } from '@ircam/sc-utils';
 const generator = idGenerator();
 const id = generator.next().value
+```
+<a name="delay"></a>
+
+### delay(ms) ⇒ <code>Promise</code>
+Waits for given number of milliseconds
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ms | <code>Number</code> | Number of milliseconds to wait |
+
+**Example**  
+```js
+import { delay } from '@ircam/sc-utils';
+// wait for 1 second
+await delay(1000);
 ```
 <a name="isString"></a>
 
@@ -89,7 +112,7 @@ Check if the value is a string
 
 **Example**  
 ```js
-import { isString } from '@ircam/utils';
+import { isString } from '@ircam/sc-utils';
 isString('test');
 > true
 ```
@@ -106,7 +129,7 @@ Check if the value is a function
 
 **Example**  
 ```js
-import { isFunction } from '@ircam/utils';
+import { isFunction } from '@ircam/sc-utils';
 isFunction(() => {}));
 > true
 ```
@@ -123,8 +146,25 @@ Check if the value is a Plain Old Javascript Object (POJO)
 
 **Example**  
 ```js
-import { isObject } from '@ircam/utils';
+import { isObject } from '@ircam/sc-utils';
 isObject({ a: 1 });
+> true
+```
+<a name="isTypedArray"></a>
+
+### isTypedArray(val) ⇒ <code>boolean</code>
+Check if the value is a TypedArray
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>\*</code> | Value to check |
+
+**Example**  
+```js
+import { isTypedArray } from '@ircam/sc-utils';
+isTypedArray(new Float32Array([1, 2, 3]));
 > true
 ```
 <a name="decibelToLinear"></a>
@@ -140,7 +180,7 @@ Convert a dB into linear gain (i.e. gain)
 
 **Example**  
 ```js
-import { decibelToLinear } from '@ircam/utils';
+import { decibelToLinear } from '@ircam/sc-utils';
 decibelToLinear(0);
 > 1
 ```
@@ -157,7 +197,7 @@ Convert a dB into power gain
 
 **Example**  
 ```js
-import { decibelToPower } from '@ircam/utils';
+import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
 > 1
 ```
@@ -174,7 +214,7 @@ Convert a linear gain into dB
 
 **Example**  
 ```js
-import { decibelToPower } from '@ircam/utils';
+import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
 > 1
 ```
@@ -191,7 +231,7 @@ Convert a linear gain into dB
 
 **Example**  
 ```js
-import { decibelToPower } from '@ircam/utils';
+import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
 > 1
 ```
@@ -212,7 +252,7 @@ Create a scale function
 
 **Example**  
 ```js
-import { scale } from '@ircam/utils';
+import { scale } from '@ircam/sc-utils';
 const myScale = scale(0, 1, 50, 100);
 myScale(0.5);
 > 75
