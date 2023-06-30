@@ -9,6 +9,18 @@ describe('isBrowser() -> boolean', () => {
   });
 });
 
+describe.only('delay() -> Promise', () => {
+  it('should wait', async () => {
+    const { delay } = utils;
+    let start = Date.now();
+
+    await delay(300);
+
+    let end = Date.now();
+    assert.equal(end - start >= 300, true);
+  });
+});
+
 describe('idGenerator() -> Iterator', () => {
   it('should create ', () => {
     const { idGenerator } = utils;

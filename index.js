@@ -48,7 +48,7 @@ export function* idGenerator() {
  * await delay(1000);
  */
 export function delay(ms) {
-  return new Promise(resolve, setTimeout(resolve, ms));
+  return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 // ---------------------------------------------------
