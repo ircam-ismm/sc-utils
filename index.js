@@ -12,7 +12,7 @@ import isPlainObj from 'is-plain-obj';
  * @example
  * import { isBrowser } from '@ircam/sc-utils';
  * isBrowser();
- * > true|false
+ * // > true|false
  */
 export const isBrowser = new Function('try {return this===window;}catch(e){ return false;}');
 
@@ -51,6 +51,19 @@ export function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+/**
+ * Same of `delay`, but given argument is in seconds
+ * @param {Number} sec - Number of seconds to wait
+ * @return {Promise}
+ * @example
+ * import { sleep } from '@ircam/sc-utils';
+ * // wait for 1 second
+ * await sleep(1);
+ */
+export function sleep(sec) {
+  return new Promise(resolve => setTimeout(resolve, sec * 1000));
+}
+
 // ---------------------------------------------------
 // Type check
 // ---------------------------------------------------
@@ -62,7 +75,7 @@ export function delay(ms) {
  * @example
  * import { isString } from '@ircam/sc-utils';
  * isString('test');
- * > true
+ * // > true
  */
 export function isString(val) {
   return (typeof val === 'string' || val instanceof String);
@@ -75,7 +88,7 @@ export function isString(val) {
  * @example
  * import { isFunction } from '@ircam/sc-utils';
  * isFunction(() => {}));
- * > true
+ * // > true
  */
 export function isFunction(func) {
   return Object.prototype.toString.call(func) == '[object Function]' ||
@@ -89,7 +102,7 @@ export function isFunction(func) {
  * @example
  * import { isObject } from '@ircam/sc-utils';
  * isObject({ a: 1 });
- * > true
+ * // > true
  */
 export function isPlainObject(obj) {
   return isPlainObj(obj);
@@ -102,7 +115,7 @@ export function isPlainObject(obj) {
  * @example
  * import { isTypedArray } from '@ircam/sc-utils';
  * isTypedArray(new Float32Array([1, 2, 3]));
- * > true
+ * // > true
  */
 export function isTypedArray(arr) {
   return (
@@ -129,7 +142,7 @@ export function isTypedArray(arr) {
  * @example
  * import { decibelToLinear } from '@ircam/sc-utils';
  * decibelToLinear(0);
- * > 1
+ * // > 1
  */
 export function decibelToLinear(val) {
   return Math.exp(0.11512925464970229 * val); // pow(10, val / 20)
@@ -142,7 +155,7 @@ export function decibelToLinear(val) {
  * @example
  * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
- * > 1
+ * // > 1
  */
 export function decibelToPower(val) {
   return Math.exp(0.23025850929940458 * val); // pow(10, val / 10)
@@ -155,7 +168,7 @@ export function decibelToPower(val) {
  * @example
  * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
- * > 1
+ * // > 1
  */
 export function linearToDecibel(val) {
   return 8.685889638065035 * Math.log(val); // 20 * log10(val);
@@ -168,12 +181,39 @@ export function linearToDecibel(val) {
  * @example
  * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
- * > 1
+ * // > 1
  */
 export function powerToDecibel(val) {
   return 4.3429448190325175 * Math.log(val); // 10 * log10(val)
 }
 
+/**
+ * Convert a MIDI note to frequency
+ * @param {number} midiNote - MIDI Note to convert
+ * @return {number}
+ * @example
+ * import { mtof } from '@ircam/sc-utils';
+ * const freq = mtof(69);
+ * // > 440
+ */
+export function mtof(midiNote) {
+  // https://www.music.mcgill.ca/~gary/307/week1/node28.html
+  return 440 * Math.pow(2, (midiNote - 69) / 12);
+}
+
+/**
+ * Convert a frequency to a MIDI note
+ * @param {number} freq - Frequency to convert
+ * @return {number}
+ * @example
+ * import { ftom } from '@ircam/sc-utils';
+ * const freq = ftom(440);
+ * // > 69
+ */
+export function ftom(freq) {
+  // https://www.music.mcgill.ca/~gary/307/week1/node28.html
+  return 12 * (Math.log(freq / 220) / Math.log(2)) + 57;
+}
 
 /**
  * Create a scale function
@@ -187,7 +227,7 @@ export function powerToDecibel(val) {
  * import { scale } from '@ircam/sc-utils';
  * const myScale = scale(0, 1, 50, 100);
  * myScale(0.5);
- * > 75
+ * // > 75
  */
 export function linearScale(minIn, maxIn, minOut, maxOut, clamp = false) {
   const a = (maxOut - minOut) / (maxIn - minIn);

@@ -1,4 +1,4 @@
-# @ircam/utils
+# @ircam/sc-utils
 
 Simple generic utilities (type check, common math functions, etc.)
 
@@ -29,6 +29,9 @@ npm install --save @ircam/sc-utils
 <dt><a href="#delay">delay(ms)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Waits for given number of milliseconds</p>
 </dd>
+<dt><a href="#sleep">sleep(ms)</a> ⇒ <code>Promise</code></dt>
+<dd><p>Alias of `delay</p>
+</dd>
 <dt><a href="#isString">isString(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a string</p>
 </dd>
@@ -53,6 +56,12 @@ npm install --save @ircam/sc-utils
 <dt><a href="#powerToDecibel">powerToDecibel(val)</a> ⇒ <code>number</code></dt>
 <dd><p>Convert a linear gain into dB</p>
 </dd>
+<dt><a href="#mtof">mtof(midiNote)</a> ⇒ <code>number</code></dt>
+<dd><p>Convert a MIDI note to frequency</p>
+</dd>
+<dt><a href="#ftom">ftom(freq)</a> ⇒ <code>number</code></dt>
+<dd><p>Convert a frequency to a MIDI note</p>
+</dd>
 <dt><a href="#linearScale">linearScale(minIn, maxIn, minOut, maxOut, [clamp])</a> ⇒ <code>function</code></dt>
 <dd><p>Create a scale function</p>
 </dd>
@@ -68,7 +77,7 @@ Check if the platform is a browser or a node process
 ```js
 import { isBrowser } from '@ircam/sc-utils';
 isBrowser();
-> true|false
+// > true|false
 ```
 <a name="idGenerator"></a>
 
@@ -99,6 +108,22 @@ import { delay } from '@ircam/sc-utils';
 // wait for 1 second
 await delay(1000);
 ```
+<a name="sleep"></a>
+
+### sleep(ms) ⇒ <code>Promise</code>
+Alias of `delay
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| ms | <code>Number</code> | Number of milliseconds to wait |
+
+**Example**  
+```js
+import { sleep } from '@ircam/sc-utils';
+await sleep(1000);
+```
 <a name="isString"></a>
 
 ### isString(val) ⇒ <code>boolean</code>
@@ -114,7 +139,7 @@ Check if the value is a string
 ```js
 import { isString } from '@ircam/sc-utils';
 isString('test');
-> true
+// > true
 ```
 <a name="isFunction"></a>
 
@@ -131,7 +156,7 @@ Check if the value is a function
 ```js
 import { isFunction } from '@ircam/sc-utils';
 isFunction(() => {}));
-> true
+// > true
 ```
 <a name="isPlainObject"></a>
 
@@ -148,7 +173,7 @@ Check if the value is a Plain Old Javascript Object (POJO)
 ```js
 import { isObject } from '@ircam/sc-utils';
 isObject({ a: 1 });
-> true
+// > true
 ```
 <a name="isTypedArray"></a>
 
@@ -165,7 +190,7 @@ Check if the value is a TypedArray
 ```js
 import { isTypedArray } from '@ircam/sc-utils';
 isTypedArray(new Float32Array([1, 2, 3]));
-> true
+// > true
 ```
 <a name="decibelToLinear"></a>
 
@@ -182,7 +207,7 @@ Convert a dB into linear gain (i.e. gain)
 ```js
 import { decibelToLinear } from '@ircam/sc-utils';
 decibelToLinear(0);
-> 1
+// > 1
 ```
 <a name="decibelToPower"></a>
 
@@ -199,7 +224,7 @@ Convert a dB into power gain
 ```js
 import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
-> 1
+// > 1
 ```
 <a name="linearToDecibel"></a>
 
@@ -216,7 +241,7 @@ Convert a linear gain into dB
 ```js
 import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
-> 1
+// > 1
 ```
 <a name="powerToDecibel"></a>
 
@@ -233,7 +258,41 @@ Convert a linear gain into dB
 ```js
 import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
-> 1
+// > 1
+```
+<a name="mtof"></a>
+
+### mtof(midiNote) ⇒ <code>number</code>
+Convert a MIDI note to frequency
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| midiNote | <code>number</code> | MIDI Note to convert |
+
+**Example**  
+```js
+import { mtof } from '@ircam/sc-utils';
+const freq = mtof(69);
+// > 440
+```
+<a name="ftom"></a>
+
+### ftom(freq) ⇒ <code>number</code>
+Convert a frequency to a MIDI note
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| freq | <code>number</code> | Frequency to convert |
+
+**Example**  
+```js
+import { ftom } from '@ircam/sc-utils';
+const freq = ftom(440);
+// > 69
 ```
 <a name="linearScale"></a>
 
@@ -255,7 +314,7 @@ Create a scale function
 import { scale } from '@ircam/sc-utils';
 const myScale = scale(0, 1, 50, 100);
 myScale(0.5);
-> 75
+// > 75
 ```
 
 <!-- apistop -->

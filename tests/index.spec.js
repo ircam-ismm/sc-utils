@@ -9,7 +9,7 @@ describe('isBrowser() -> boolean', () => {
   });
 });
 
-describe.only('delay() -> Promise', () => {
+describe('delay(ms) -> Promise', () => {
   it('should wait', async () => {
     const { delay } = utils;
     let start = Date.now();
@@ -18,6 +18,18 @@ describe.only('delay() -> Promise', () => {
 
     let end = Date.now();
     assert.equal(end - start >= 300, true);
+  });
+});
+
+describe('sleep(sec) -> Promise', () => {
+  it('should wait', async () => {
+    const { sleep } = utils;
+    let start = Date.now();
+
+    await sleep(0.1);
+
+    let end = Date.now();
+    assert.equal(end - start >= 100, true);
   });
 });
 
@@ -34,7 +46,7 @@ describe('idGenerator() -> Iterator', () => {
   });
 });
 
-describe('isString() -> boolean', () => {
+describe('isString(val) -> boolean', () => {
   it('should check strings', () => {
     const { isString } = utils;
     assert.equal(isString(''), true);
@@ -48,7 +60,7 @@ describe('isString() -> boolean', () => {
   })
 });
 
-describe('isFunction() -> boolean', () => {
+describe('isFunction(val) -> boolean', () => {
   it('should check function', () => {
     const { isFunction } = utils;
     assert.equal(isFunction(function() {}), true);
@@ -63,7 +75,7 @@ describe('isFunction() -> boolean', () => {
   })
 });
 
-describe('isPlainObject() -> boolean', () => {
+describe('isPlainObject(val) -> boolean', () => {
   it('should check pojos', () => {
     const { isPlainObject } = utils;
     class Test {}
@@ -78,7 +90,31 @@ describe('isPlainObject() -> boolean', () => {
   })
 });
 
-describe('scale() -> Function', () => {
+describe('mtof(midiNote) -> number', () => {
+  it('should compute frequency from MIDI note', () => {
+    const { mtof } = utils;
+
+    assert.equal(mtof(69), 440);
+    assert.equal(mtof(69 + 12), 880);
+    assert.equal(mtof(69 - 24), 110);
+    assert.equal(parseFloat(mtof(101).toFixed(2)), 2793.83);
+    assert.equal(parseFloat(mtof(49).toFixed(2)), 138.59);
+  });
+});
+
+describe('ftom(freq) -> number', () => {
+  it('should compute MIDI note from frequency', () => {
+    const { ftom } = utils;
+
+    assert.equal(ftom(220), 69 - 12);
+    assert.equal(ftom(880), 69 + 12);
+    assert.equal(ftom(110), 69 - 24);
+    assert.isBelow(Math.abs(ftom(2793.83) - 101), 1e-3);
+    assert.isBelow(Math.abs(ftom(138.59) - 49), 1e-3);
+  });
+});
+
+describe('scale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () => {
   it('should create scale', () => {
     const { linearScale } = utils;
     const myScale = linearScale(0, 1, 50, 100);
@@ -90,7 +126,7 @@ describe('scale() -> Function', () => {
     assert.equal(myScale(2), 150);
   });
 
-  it('should create scale', () => {
+  it('should create clamped scale', () => {
     const { linearScale } = utils;
     const myScale = linearScale(0, 1, 50, 100, true);
 
