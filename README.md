@@ -29,8 +29,8 @@ npm install --save @ircam/sc-utils
 <dt><a href="#delay">delay(ms)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Waits for given number of milliseconds</p>
 </dd>
-<dt><a href="#sleep">sleep(ms)</a> ⇒ <code>Promise</code></dt>
-<dd><p>Alias of `delay</p>
+<dt><a href="#sleep">sleep(sec)</a> ⇒ <code>Promise</code></dt>
+<dd><p>Same of <code>delay</code>, but given argument is in seconds</p>
 </dd>
 <dt><a href="#isString">isString(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a string</p>
@@ -110,19 +110,20 @@ await delay(1000);
 ```
 <a name="sleep"></a>
 
-### sleep(ms) ⇒ <code>Promise</code>
-Alias of `delay
+### sleep(sec) ⇒ <code>Promise</code>
+Same of `delay`, but given argument is in seconds
 
 **Kind**: global function  
 
 | Param | Type | Description |
 | --- | --- | --- |
-| ms | <code>Number</code> | Number of milliseconds to wait |
+| sec | <code>Number</code> | Number of seconds to wait |
 
 **Example**  
 ```js
 import { sleep } from '@ircam/sc-utils';
-await sleep(1000);
+// wait for 1 second
+await sleep(1);
 ```
 <a name="isString"></a>
 
