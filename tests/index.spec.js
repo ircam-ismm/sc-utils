@@ -75,6 +75,27 @@ describe('isFunction(val) -> boolean', () => {
   })
 });
 
+describe('isNumber(val) -> boolean', () => {
+  it('should check numbers', () => {
+    const { isNumber } = utils;
+
+    assert.equal(isNumber(0), true);
+    assert.equal(isNumber(1), true);
+    assert.equal(isNumber(2), true);
+    assert.equal(isNumber(-1), true);
+    assert.equal(isNumber(1.345e+17), true);
+    assert.equal(isNumber(Infinity), true);
+
+    assert.equal(isNumber(false), false);
+    assert.equal(isNumber(true), false);
+    assert.equal(isNumber(NaN), false);
+    assert.equal(isNumber('1'), false);
+    assert.equal(isNumber('0'), false);
+    assert.equal(isNumber({}), false);
+    assert.equal(isNumber([]), false);
+  })
+});
+
 describe('isPlainObject(val) -> boolean', () => {
   it('should check pojos', () => {
     const { isPlainObject } = utils;
@@ -89,6 +110,31 @@ describe('isPlainObject(val) -> boolean', () => {
     assert.equal(isPlainObject([]), false);
   })
 });
+
+describe('atodb(val) -> number', () => {
+  it(`should convert linear amplitude to dB`, () => {
+    const { atodb } = utils;
+
+    assert.equal(atodb(1), 0);
+    assert.equal(Math.round(atodb(0.5)), -6);
+    assert.equal(Math.round(atodb(0.1)), -20);
+    assert.equal(Math.round(atodb(0.01)), -40);
+    assert.equal(Math.round(atodb(0.001)), -60);
+  });
+});
+
+describe('dbtoa(val) -> number', () => {
+  it(`should convert dB to linear amplitude`, () => {
+    const { dbtoa } = utils;
+
+    assert.equal(dbtoa(0), 1);
+    assert.equal(parseFloat(dbtoa(-6).toFixed(2)), 0.5);
+    assert.equal(parseFloat(dbtoa(-20).toFixed(2)), 0.1);
+    assert.equal(parseFloat(dbtoa(-40).toFixed(3)), 0.01);
+    assert.equal(parseFloat(dbtoa(-60).toFixed(4)), 0.001);
+  });
+});
+
 
 describe('mtof(midiNote) -> number', () => {
   it('should compute frequency from MIDI note', () => {

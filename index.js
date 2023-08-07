@@ -17,26 +17,8 @@ import isPlainObj from 'is-plain-obj';
 export const isBrowser = new Function('try {return this===window;}catch(e){ return false;}');
 
 // ---------------------------------------------------
-// Misc
+// Timing
 // ---------------------------------------------------
-
-/**
- * Create a iterator of incrementing ids
- * @return {Iterator}
- * @example
- * import { idGenerator } from '@ircam/sc-utils';
- * const generator = idGenerator();
- * const id = generator.next().value
- */
-export function* idGenerator() {
-  for (let i = 0; true; i++) {
-    if (i === Number.MAX_SAFE_INTEGER) {
-      i = 0;
-    }
-
-    yield i;
-  }
-}
 
 /**
  * Waits for given number of milliseconds
@@ -95,6 +77,21 @@ export function isFunction(func) {
     Object.prototype.toString.call(func) == '[object AsyncFunction]';
 }
 
+
+/**
+ * Check if the value is a number, including Infinity.
+ * If you want to excluse Infinity, check the native Number.isFinite function
+ * @param {*} val - Value to check
+ * @return {boolean}
+ * @example
+ * import { isNumber } from '@ircam/sc-utils';
+ * isNumber(42);
+ * // > true
+ */
+export function isNumber(n) {
+  return Number(n) === n;
+}
+
 /**
  * Check if the value is a Plain Old Javascript Object (POJO)
  * @param {*} val - Value to check
@@ -137,6 +134,21 @@ export function isTypedArray(arr) {
 
 /**
  * Convert a dB into linear gain (i.e. gain)
+ * Alias: decibelToLinear
+ * @param {number} val - Value to convert
+ * @return {number}
+ * @example
+ * import { dbtoa } from '@ircam/sc-utils';
+ * dbtoa(0);
+ * // > 1
+ */
+export function dbtoa(val) {
+  return Math.exp(0.11512925464970229 * val); // pow(10, val / 20)
+}
+
+/**
+ * Convert a dB into linear gain (i.e. gain)
+ * Alis: dbtoa
  * @param {number} val - Value to convert
  * @return {number}
  * @example
@@ -145,7 +157,7 @@ export function isTypedArray(arr) {
  * // > 1
  */
 export function decibelToLinear(val) {
-  return Math.exp(0.11512925464970229 * val); // pow(10, val / 20)
+  return dbtoa(val); // pow(10, val / 20)
 }
 
 /**
@@ -163,6 +175,21 @@ export function decibelToPower(val) {
 
 /**
  * Convert a linear gain into dB
+ * Alias: linearToDecibel
+ * @param {number} val - Value to convert
+ * @return {number}
+ * @example
+ * import { atodb } from '@ircam/sc-utils';
+ * atodb(0);
+ * // > 1
+ */
+export function atodb(val) {
+  return 8.685889638065035 * Math.log(val); // 20 * log10(val);
+}
+
+/**
+ * Convert a linear gain into dB
+ * Alias: atodb
  * @param {number} val - Value to convert
  * @return {number}
  * @example
@@ -171,7 +198,7 @@ export function decibelToPower(val) {
  * // > 1
  */
 export function linearToDecibel(val) {
-  return 8.685889638065035 * Math.log(val); // 20 * log10(val);
+  return atodb(atodb);
 }
 
 /**
@@ -241,3 +268,26 @@ export function linearScale(minIn, maxIn, minOut, maxOut, clamp = false) {
     };
   }
 }
+
+// ---------------------------------------------------
+// MISC
+// ---------------------------------------------------
+
+/**
+ * Create a iterator of incrementing ids
+ * @return {Iterator}
+ * @example
+ * import { idGenerator } from '@ircam/sc-utils';
+ * const generator = idGenerator();
+ * const id = generator.next().value
+ */
+export function* idGenerator() {
+  for (let i = 0; true; i++) {
+    if (i === Number.MAX_SAFE_INTEGER) {
+      i = 0;
+    }
+
+    yield i;
+  }
+}
+
