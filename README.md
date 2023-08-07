@@ -23,9 +23,6 @@ npm install --save @ircam/sc-utils
 ### Functions
 
 <dl>
-<dt><a href="#idGenerator">idGenerator()</a> ⇒ <code>Iterator</code></dt>
-<dd><p>Create a iterator of incrementing ids</p>
-</dd>
 <dt><a href="#delay">delay(ms)</a> ⇒ <code>Promise</code></dt>
 <dd><p>Waits for given number of milliseconds</p>
 </dd>
@@ -38,20 +35,34 @@ npm install --save @ircam/sc-utils
 <dt><a href="#isFunction">isFunction(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a function</p>
 </dd>
+<dt><a href="#isNumber">isNumber(val)</a> ⇒ <code>boolean</code></dt>
+<dd><p>Check if the value is a number, including Infinity.
+If you want to excluse Infinity, check the native Number.isFinite function</p>
+</dd>
 <dt><a href="#isPlainObject">isPlainObject(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a Plain Old Javascript Object (POJO)</p>
 </dd>
 <dt><a href="#isTypedArray">isTypedArray(val)</a> ⇒ <code>boolean</code></dt>
 <dd><p>Check if the value is a TypedArray</p>
 </dd>
+<dt><a href="#dbtoa">dbtoa(val)</a> ⇒ <code>number</code></dt>
+<dd><p>Convert a dB into linear gain (i.e. gain)
+Alias: decibelToLinear</p>
+</dd>
 <dt><a href="#decibelToLinear">decibelToLinear(val)</a> ⇒ <code>number</code></dt>
-<dd><p>Convert a dB into linear gain (i.e. gain)</p>
+<dd><p>Convert a dB into linear gain (i.e. gain)
+Alis: dbtoa</p>
 </dd>
 <dt><a href="#decibelToPower">decibelToPower(val)</a> ⇒ <code>number</code></dt>
 <dd><p>Convert a dB into power gain</p>
 </dd>
+<dt><a href="#atodb">atodb(val)</a> ⇒ <code>number</code></dt>
+<dd><p>Convert a linear gain into dB
+Alias: linearToDecibel</p>
+</dd>
 <dt><a href="#linearToDecibel">linearToDecibel(val)</a> ⇒ <code>number</code></dt>
-<dd><p>Convert a linear gain into dB</p>
+<dd><p>Convert a linear gain into dB
+Alias: atodb</p>
 </dd>
 <dt><a href="#powerToDecibel">powerToDecibel(val)</a> ⇒ <code>number</code></dt>
 <dd><p>Convert a linear gain into dB</p>
@@ -64,6 +75,9 @@ npm install --save @ircam/sc-utils
 </dd>
 <dt><a href="#linearScale">linearScale(minIn, maxIn, minOut, maxOut, [clamp])</a> ⇒ <code>function</code></dt>
 <dd><p>Create a scale function</p>
+</dd>
+<dt><a href="#idGenerator">idGenerator()</a> ⇒ <code>Iterator</code></dt>
+<dd><p>Create a iterator of incrementing ids</p>
 </dd>
 </dl>
 
@@ -78,18 +92,6 @@ Check if the platform is a browser or a node process
 import { isBrowser } from '@ircam/sc-utils';
 isBrowser();
 // > true|false
-```
-<a name="idGenerator"></a>
-
-### idGenerator() ⇒ <code>Iterator</code>
-Create a iterator of incrementing ids
-
-**Kind**: global function  
-**Example**  
-```js
-import { idGenerator } from '@ircam/sc-utils';
-const generator = idGenerator();
-const id = generator.next().value
 ```
 <a name="delay"></a>
 
@@ -159,6 +161,24 @@ import { isFunction } from '@ircam/sc-utils';
 isFunction(() => {}));
 // > true
 ```
+<a name="isNumber"></a>
+
+### isNumber(val) ⇒ <code>boolean</code>
+Check if the value is a number, including Infinity.
+If you want to excluse Infinity, check the native Number.isFinite function
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>\*</code> | Value to check |
+
+**Example**  
+```js
+import { isNumber } from '@ircam/sc-utils';
+isNumber(42);
+// > true
+```
 <a name="isPlainObject"></a>
 
 ### isPlainObject(val) ⇒ <code>boolean</code>
@@ -193,10 +213,29 @@ import { isTypedArray } from '@ircam/sc-utils';
 isTypedArray(new Float32Array([1, 2, 3]));
 // > true
 ```
+<a name="dbtoa"></a>
+
+### dbtoa(val) ⇒ <code>number</code>
+Convert a dB into linear gain (i.e. gain)
+Alias: decibelToLinear
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>number</code> | Value to convert |
+
+**Example**  
+```js
+import { dbtoa } from '@ircam/sc-utils';
+dbtoa(0);
+// > 1
+```
 <a name="decibelToLinear"></a>
 
 ### decibelToLinear(val) ⇒ <code>number</code>
 Convert a dB into linear gain (i.e. gain)
+Alis: dbtoa
 
 **Kind**: global function  
 
@@ -227,10 +266,29 @@ import { decibelToPower } from '@ircam/sc-utils';
 decibelToPower(0);
 // > 1
 ```
+<a name="atodb"></a>
+
+### atodb(val) ⇒ <code>number</code>
+Convert a linear gain into dB
+Alias: linearToDecibel
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| val | <code>number</code> | Value to convert |
+
+**Example**  
+```js
+import { atodb } from '@ircam/sc-utils';
+atodb(0);
+// > 1
+```
 <a name="linearToDecibel"></a>
 
 ### linearToDecibel(val) ⇒ <code>number</code>
 Convert a linear gain into dB
+Alias: atodb
 
 **Kind**: global function  
 
@@ -316,6 +374,18 @@ import { scale } from '@ircam/sc-utils';
 const myScale = scale(0, 1, 50, 100);
 myScale(0.5);
 // > 75
+```
+<a name="idGenerator"></a>
+
+### idGenerator() ⇒ <code>Iterator</code>
+Create a iterator of incrementing ids
+
+**Kind**: global function  
+**Example**  
+```js
+import { idGenerator } from '@ircam/sc-utils';
+const generator = idGenerator();
+const id = generator.next().value
 ```
 
 <!-- apistop -->
