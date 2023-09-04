@@ -1,5 +1,6 @@
 /**
  * Convert a dB into power gain
+ *
  * @param {number} val - Value to convert
  * @return {number}
  * @example

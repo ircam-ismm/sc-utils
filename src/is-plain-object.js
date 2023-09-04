@@ -9,6 +9,6 @@ import isPlainObj from 'is-plain-obj';
  * isObject({ a: 1 });
  * // > true
  */
-export function isPlainObject(obj) {
-  return isPlainObj(obj);
+export function isPlainObject(val) {
+  return isPlainObj(val);
 }

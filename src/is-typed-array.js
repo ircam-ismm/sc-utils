@@ -7,16 +7,16 @@
  * isTypedArray(new Float32Array([1, 2, 3]));
  * // > true
  */
-export function isTypedArray(arr) {
+export function isTypedArray(val) {
   return (
-       arr instanceof Int8Array
-    || arr instanceof Int16Array
-    || arr instanceof Int32Array
-    || arr instanceof Uint8Array
-    || arr instanceof Uint8ClampedArray
-    || arr instanceof Uint16Array
-    || arr instanceof Uint32Array
-    || arr instanceof Float32Array
-    || arr instanceof Float64Array
+       val instanceof Int8Array
+    || val instanceof Int16Array
+    || val instanceof Int32Array
+    || val instanceof Uint8Array
+    || val instanceof Uint8ClampedArray
+    || val instanceof Uint16Array
+    || val instanceof Uint32Array
+    || val instanceof Float32Array
+    || val instanceof Float64Array
   )
 }

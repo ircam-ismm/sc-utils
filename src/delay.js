@@ -1,5 +1,8 @@
 /**
- * Waits for given number of milliseconds
+ * Wait for a given number of milliseconds.
+ *
+ * See also `sleep`
+ *
  * @param {Number} ms - Number of milliseconds to wait
  * @return {Promise}
  * @example

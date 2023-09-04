@@ -1,5 +1,8 @@
 /**
- * Same of `delay`, but given argument is in seconds
+ * Wait for a given number of seconds.
+ *
+ * See also `delay`
+ *
  * @param {Number} sec - Number of seconds to wait
  * @return {Promise}
  * @example

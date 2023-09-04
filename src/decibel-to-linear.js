@@ -2,7 +2,9 @@ import { dbtoa } from './dbtoa.js';
 
 /**
  * Convert a dB into linear gain (i.e. gain)
- * Alis: dbtoa
+ *
+ * _Alias:_ `dbtoa`
+ *
  * @param {number} val - Value to convert
  * @return {number}
  * @example

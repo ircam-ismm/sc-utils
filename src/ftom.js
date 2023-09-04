@@ -1,5 +1,6 @@
 /**
- * Convert a frequency to a MIDI note
+ * Convert a frequency in Hz to a MIDI note
+ *
  * @param {number} freq - Frequency to convert
  * @return {number}
  * @example

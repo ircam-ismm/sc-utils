@@ -1,6 +1,8 @@
 /**
  * Convert a linear gain into dB
- * Alias: linearToDecibel
+ *
+ * _Alias:_ `linearToDecibel`
+ *
  * @param {number} val - Value to convert
  * @return {number}
  * @example

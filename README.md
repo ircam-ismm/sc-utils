@@ -21,27 +21,29 @@ npm install --save @ircam/sc-utils
 *   [decibelToPower][4]
 *   [delay][5]
 *   [ftom][6]
-*   [idGenerator][7]
-*   [isBrowser][8]
-*   [isFunction][9]
-*   [isNumber][10]
-*   [isPlainObject][11]
-*   [isString][12]
-*   [isTypedArray][13]
-*   [linearScale][14]
-*   [linearToDecibel][15]
-*   [mtof][16]
-*   [powerToDecibel][17]
-*   [sleep][18]
+*   [getTime][7]
+*   [idGenerator][8]
+*   [isBrowser][9]
+*   [isFunction][10]
+*   [isNumber][11]
+*   [isPlainObject][12]
+*   [isString][13]
+*   [isTypedArray][14]
+*   [linearScale][15]
+*   [linearToDecibel][16]
+*   [mtof][17]
+*   [powerToDecibel][18]
+*   [sleep][19]
 
 ## atodb
 
 Convert a linear gain into dB
-Alias: linearToDecibel
+
+*Alias:* `linearToDecibel`
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -51,16 +53,17 @@ atodb(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## dbtoa
 
-Convert a dB into linear gain (i.e. gain)
-Alias: decibelToLinear
+Convert a dB into linear gain
+
+*Alias:* `decibelToLinear`
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -70,16 +73,17 @@ dbtoa(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## decibelToLinear
 
 Convert a dB into linear gain (i.e. gain)
-Alis: dbtoa
+
+*Alias:* `dbtoa`
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -89,7 +93,7 @@ decibelToLinear(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## decibelToPower
 
@@ -97,7 +101,7 @@ Convert a dB into power gain
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -107,15 +111,17 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## delay
 
-Waits for given number of milliseconds
+Wait for a given number of milliseconds.
+
+See also `sleep`
 
 ### Parameters
 
-*   `ms` **[Number][19]** Number of milliseconds to wait
+*   `ms` **[Number][20]** Number of milliseconds to wait
 
 ### Examples
 
@@ -125,15 +131,15 @@ import { delay } from '@ircam/sc-utils';
 await delay(1000);
 ```
 
-Returns **[Promise][20]**&#x20;
+Returns **[Promise][21]**&#x20;
 
 ## ftom
 
-Convert a frequency to a MIDI note
+Convert a frequency in Hz to a MIDI note
 
 ### Parameters
 
-*   `freq` **[number][19]** Frequency to convert
+*   `freq` **[number][20]** Frequency to convert
 
 ### Examples
 
@@ -143,7 +149,23 @@ const freq = ftom(440);
 // > 69
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
+
+## getTime
+
+Provide a unified clock in seconds accross platforms, with an origin defined by
+the start of the process.
+
+### Examples
+
+```javascript
+import { getTime } from '@ircam/sc-utils';
+
+setInterval(() => {
+  const now = getTime();
+  // ...
+}, 1000)
+```
 
 ## idGenerator
 
@@ -171,7 +193,7 @@ isBrowser();
 // > true|false
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## isFunction
 
@@ -179,18 +201,17 @@ Check if the value is a function
 
 ### Parameters
 
-*   `func` &#x20;
 *   `val` **any** Value to check
 
 ### Examples
 
 ```javascript
 import { isFunction } from '@ircam/sc-utils';
-isFunction(() => {}));
+isFunction(() => {});
 // > true
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## isNumber
 
@@ -199,7 +220,6 @@ If you want to excluse Infinity, check the native Number.isFinite function
 
 ### Parameters
 
-*   `n` &#x20;
 *   `val` **any** Value to check
 
 ### Examples
@@ -210,7 +230,7 @@ isNumber(42);
 // > true
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## isPlainObject
 
@@ -218,7 +238,6 @@ Check if the value is a Plain Old Javascript Object (POJO)
 
 ### Parameters
 
-*   `obj` &#x20;
 *   `val` **any** Value to check
 
 ### Examples
@@ -229,7 +248,7 @@ isObject({ a: 1 });
 // > true
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## isString
 
@@ -247,7 +266,7 @@ isString('test');
 // > true
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## isTypedArray
 
@@ -255,7 +274,6 @@ Check if the value is a TypedArray
 
 ### Parameters
 
-*   `arr` &#x20;
 *   `val` **any** Value to check
 
 ### Examples
@@ -266,7 +284,7 @@ isTypedArray(new Float32Array([1, 2, 3]));
 // > true
 ```
 
-Returns **[boolean][21]**&#x20;
+Returns **[boolean][22]**&#x20;
 
 ## linearScale
 
@@ -274,11 +292,11 @@ Create a scale function
 
 ### Parameters
 
-*   `minIn` **[number][19]** Minimum input
-*   `maxIn` **[number][19]** Maximum input
-*   `minOut` **[number][19]** Minimum output
-*   `maxOut` **[number][19]** Maximum output
-*   `clamp` **[boolean][21]** Clamp output (optional, default `false`)
+*   `minIn` **[number][20]** Minimum input
+*   `maxIn` **[number][20]** Maximum input
+*   `minOut` **[number][20]** Minimum output
+*   `maxOut` **[number][20]** Maximum output
+*   `clamp` **[boolean][22]** Clamp output (optional, default `false`)
 
 ### Examples
 
@@ -289,16 +307,17 @@ myScale(0.5);
 // > 75
 ```
 
-Returns **[Function][22]**&#x20;
+Returns **[Function][23]**&#x20;
 
 ## linearToDecibel
 
 Convert a linear gain into dB
-Alias: atodb
+
+*Alias:* `atodb`
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -308,7 +327,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## mtof
 
@@ -316,7 +335,7 @@ Convert a MIDI note to frequency
 
 ### Parameters
 
-*   `midiNote` **[number][19]** MIDI Note to convert
+*   `midiNote` **[number][20]** MIDI Note to convert
 
 ### Examples
 
@@ -326,7 +345,7 @@ const freq = mtof(69);
 // > 440
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## powerToDecibel
 
@@ -334,7 +353,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][19]** Value to convert
+*   `val` **[number][20]** Value to convert
 
 ### Examples
 
@@ -344,15 +363,17 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][19]**&#x20;
+Returns **[number][20]**&#x20;
 
 ## sleep
 
-Same of `delay`, but given argument is in seconds
+Wait for a given number of seconds.
+
+See also `delay`
 
 ### Parameters
 
-*   `sec` **[Number][19]** Number of seconds to wait
+*   `sec` **[Number][20]** Number of seconds to wait
 
 ### Examples
 
@@ -362,7 +383,7 @@ import { sleep } from '@ircam/sc-utils';
 await sleep(1);
 ```
 
-Returns **[Promise][20]**&#x20;
+Returns **[Promise][21]**&#x20;
 
 [1]: #atodb
 
@@ -376,37 +397,39 @@ Returns **[Promise][20]**&#x20;
 
 [6]: #ftom
 
-[7]: #idgenerator
+[7]: #gettime
 
-[8]: #isbrowser
+[8]: #idgenerator
 
-[9]: #isfunction
+[9]: #isbrowser
 
-[10]: #isnumber
+[10]: #isfunction
 
-[11]: #isplainobject
+[11]: #isnumber
 
-[12]: #isstring
+[12]: #isplainobject
 
-[13]: #istypedarray
+[13]: #isstring
 
-[14]: #linearscale
+[14]: #istypedarray
 
-[15]: #lineartodecibel
+[15]: #linearscale
 
-[16]: #mtof
+[16]: #lineartodecibel
 
-[17]: #powertodecibel
+[17]: #mtof
 
-[18]: #sleep
+[18]: #powertodecibel
 
-[19]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[19]: #sleep
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
 <!-- apistop -->
 

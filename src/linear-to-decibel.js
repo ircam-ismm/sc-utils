@@ -2,7 +2,9 @@ import { atodb } from './atodb.js';
 
 /**
  * Convert a linear gain into dB
- * Alias: atodb
+ *
+ * _Alias:_ `atodb`
+ *
  * @param {number} val - Value to convert
  * @return {number}
  * @example

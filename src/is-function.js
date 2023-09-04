@@ -4,11 +4,11 @@
  * @return {boolean}
  * @example
  * import { isFunction } from '@ircam/sc-utils';
- * isFunction(() => {}));
+ * isFunction(() => {});
  * // > true
  */
-export function isFunction(func) {
-  return Object.prototype.toString.call(func) == '[object Function]' ||
-    Object.prototype.toString.call(func) == '[object AsyncFunction]';
+export function isFunction(val) {
+  return Object.prototype.toString.call(val) == '[object Function]' ||
+    Object.prototype.toString.call(val) == '[object AsyncFunction]';
 }
 

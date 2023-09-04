@@ -8,6 +8,6 @@
  * isNumber(42);
  * // > true
  */
-export function isNumber(n) {
-  return Number(n) === n;
+export function isNumber(val) {
+  return Number(val) === val;
 }
