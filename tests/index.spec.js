@@ -1,5 +1,5 @@
 import { assert } from 'chai';
-import * as utils from '../index.js';
+import * as utils from '../src/index.js';
 
 describe('isBrowser() -> boolean', () => {
   it('should return false', () => {
@@ -181,5 +181,13 @@ describe('scale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () =>
     assert.equal(myScale(1), 100);
     assert.equal(myScale(-1), 50);
     assert.equal(myScale(2), 100);
+  });
+});
+
+describe('getTime', () => {
+  it('should be re-exported from @ircam/sc-gettime', () => {
+    const { getTime, isNumber } = utils;
+
+    assert.equal(isNumber(getTime()), true);
   });
 });
