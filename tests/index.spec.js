@@ -160,7 +160,7 @@ describe('ftom(freq) -> number', () => {
   });
 });
 
-describe('scale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () => {
+describe('linearScale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () => {
   it('should create scale', () => {
     const { linearScale } = utils;
     const myScale = linearScale(0, 1, 50, 100);
@@ -181,6 +181,28 @@ describe('scale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () =>
     assert.equal(myScale(1), 100);
     assert.equal(myScale(-1), 50);
     assert.equal(myScale(2), 100);
+  });
+
+  it('should create clamped scale with reversed boudaries (1)', () => {
+    const { linearScale } = utils;
+    const myScale = linearScale(1, 0, 0, 1, true);
+
+    assert.equal(myScale(0), 1);
+    assert.equal(myScale(0.5), 0.5);
+    assert.equal(myScale(1), 0);
+    assert.equal(myScale(-1), 1);
+    assert.equal(myScale(2), 0);
+  });
+
+  it('should create clamped scale with reversed boudaries (2)', () => {
+    const { linearScale } = utils;
+    const myScale = linearScale(0, 1, 1, 0, true);
+
+    assert.equal(myScale(0), 1);
+    assert.equal(myScale(0.5), 0.5);
+    assert.equal(myScale(1), 0);
+    assert.equal(myScale(-1), 1);
+    assert.equal(myScale(2), 0);
   });
 });
 

@@ -18,9 +18,12 @@ export function linearScale(minIn, maxIn, minOut, maxOut, clamp = false) {
   if (!clamp) {
     return x => a * x + b;
   } else {
+    const upperBound = Math.max(minOut, maxOut);
+    const lowerBound = Math.min(minOut, maxOut);
+
     return x => {
       const y = a * x + b;
-      return Math.max(minOut, Math.min(maxOut, y));
+      return Math.max(lowerBound, Math.min(upperBound, y));
     };
   }
 }
