@@ -8,8 +8,8 @@
     "access": "public"
   },
   "exports": {
-    ".": "src/index.js",
-    "./": "src/"
+    ".": "./src/index.js",
+    "./": "./src/"
   },
   "scripts": {
     "api": "jsdoc-to-readme --src src/*.js --heading-depth 2",
