@@ -37,6 +37,9 @@ export { decibelToPower } from './decibel-to-power.js';
 export { ftom } from './ftom.js';
 export { mtof } from './mtof.js';
 
+export { hertzToNormalised } from './hertz-to-normalised.js';
+export { normalisedToHertz } from './normalised-to-hertz.js';
+
 export { linearScale } from './linear-scale.js';
 
 // ---------------------------------------------------

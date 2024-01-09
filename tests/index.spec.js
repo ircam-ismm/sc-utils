@@ -160,6 +160,60 @@ describe('ftom(freq) -> number', () => {
   });
 });
 
+describe(`Check frequency conversions`, () => {
+  const { hertzToNormalised, normalisedToHertz } = utils;
+
+
+  const testValues = [
+    [{sampleRate: 44100}, 22050, 1],
+    [{sampleRate: 44100}, 0, 0],
+    [{sampleRate: 30}, 15, 1],
+    [{sampleRate: 30}, 0, 0],
+    [{sampleRate: 30}, 7.5, 0.5],
+    [{sampleRate: 2}, 1.22, 1.22],
+  ];
+
+  it(`should convert from Hertz values and back`, () => {
+    testValues.forEach( (values) => {
+      assert.isBelow(Math.abs(normalisedToHertz(hertzToNormalised(values[1], values[0]),
+                                                values[0])
+                              - values[1]),
+                              1e-3,
+                     `from ${values[1]} hz`);
+    });
+  });
+
+  it(`should convert from Hertz values and back`, () => {
+    testValues.forEach( (values) => {
+      assert.isBelow(Math.abs(hertzToNormalised(normalisedToHertz(values[2], values[0]),
+                                                values[0])
+                              - values[2]),
+                              1e-3,
+                     `from ${values[2]} normalised`);
+    });
+  });
+
+  it(`should conform from Hertz values`, () => {
+    testValues.forEach( (values) => {
+      assert.isBelow(Math.abs(hertzToNormalised(values[1], values[0])
+                              - values[2]),
+                              1e-3,
+                     `from ${values[1]} hz`);
+    });
+  });
+
+  it(`should conform from normalised values`, () => {
+    testValues.forEach( (values) => {
+      assert.isBelow(Math.abs(normalisedToHertz(values[2], values[0])
+                              - values[1]),
+                     1e-3,
+                     `from ${values[1]} normalised`);
+    });
+  });
+
+});
+
+
 describe('linearScale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () => {
   it('should create scale', () => {
     const { linearScale } = utils;
