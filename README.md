@@ -22,19 +22,21 @@ npm install --save @ircam/sc-utils
 *   [delay][5]
 *   [ftom][6]
 *   [getTime][7]
-*   [idGenerator][8]
-*   [isBrowser][9]
-*   [isFunction][10]
-*   [isNumber][11]
-*   [isPlainObject][12]
-*   [isString][13]
-*   [isTypedArray][14]
-*   [isURL][15]
-*   [linearScale][16]
-*   [linearToDecibel][17]
-*   [mtof][18]
-*   [powerToDecibel][19]
-*   [sleep][20]
+*   [hertzToNormalised][8]
+*   [idGenerator][9]
+*   [isBrowser][10]
+*   [isFunction][11]
+*   [isNumber][12]
+*   [isPlainObject][13]
+*   [isString][14]
+*   [isTypedArray][15]
+*   [isURL][16]
+*   [linearScale][17]
+*   [linearToDecibel][18]
+*   [mtof][19]
+*   [normalisedToHertz][20]
+*   [powerToDecibel][21]
+*   [sleep][22]
 
 ## atodb
 
@@ -44,7 +46,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -54,7 +56,7 @@ atodb(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## dbtoa
 
@@ -64,7 +66,7 @@ Convert a dB into linear gain
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -74,7 +76,7 @@ dbtoa(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## decibelToLinear
 
@@ -84,7 +86,7 @@ Convert a dB into linear gain (i.e. gain)
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -94,7 +96,7 @@ decibelToLinear(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## decibelToPower
 
@@ -102,7 +104,7 @@ Convert a dB into power gain
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -112,7 +114,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## delay
 
@@ -122,7 +124,7 @@ See also `sleep`
 
 ### Parameters
 
-*   `ms` **[Number][21]** Number of milliseconds to wait
+*   `ms` **[Number][23]** Number of milliseconds to wait
 
 ### Examples
 
@@ -132,7 +134,7 @@ import { delay } from '@ircam/sc-utils';
 await delay(1000);
 ```
 
-Returns **[Promise][22]**&#x20;
+Returns **[Promise][24]**&#x20;
 
 ## ftom
 
@@ -140,7 +142,7 @@ Convert a frequency in Hz to a MIDI note
 
 ### Parameters
 
-*   `freq` **[number][21]** Frequency to convert
+*   `freq` **[number][23]** Frequency to convert
 
 ### Examples
 
@@ -150,7 +152,7 @@ const freq = ftom(440);
 // > 69
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## getTime
 
@@ -167,6 +169,29 @@ setInterval(() => {
   // ...
 }, 1000)
 ```
+
+## hertzToNormalised
+
+Convert a frequency in Hertz to a normalised one in \[0, 1].
+
+Normalised frequency of 1 is half the sample-rate (Nyquist frequency).
+
+### Parameters
+
+*   `frequencyHertz` **[number][23]** Frequency in Hertz to convert
+*   `sampleRate` **[number][23]** Twice the Nyquist frequency (optional, default `{}`)
+
+    *   `sampleRate.sampleRate`   (optional, default `2`)
+
+### Examples
+
+```javascript
+import { hertzToNormalised } from '@ircam/sc-utils';
+hertzToNormalised(12000, {sampleRate: 48000});
+// > 0.5
+```
+
+Returns **[number][23]**&#x20;
 
 ## idGenerator
 
@@ -194,7 +219,7 @@ isBrowser();
 // > true|false
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isFunction
 
@@ -212,7 +237,7 @@ isFunction(() => {});
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isNumber
 
@@ -231,7 +256,7 @@ isNumber(42);
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isPlainObject
 
@@ -249,7 +274,7 @@ isObject({ a: 1 });
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isString
 
@@ -267,7 +292,7 @@ isString('test');
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isTypedArray
 
@@ -285,7 +310,7 @@ isTypedArray(new Float32Array([1, 2, 3]));
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## isURL
 
@@ -304,7 +329,7 @@ isURL('http://sub.my-site.org/abcd?test=123');
 // > true
 ```
 
-Returns **[boolean][23]**&#x20;
+Returns **[boolean][25]**&#x20;
 
 ## linearScale
 
@@ -312,11 +337,11 @@ Create a scale function
 
 ### Parameters
 
-*   `minIn` **[number][21]** Minimum input
-*   `maxIn` **[number][21]** Maximum input
-*   `minOut` **[number][21]** Minimum output
-*   `maxOut` **[number][21]** Maximum output
-*   `clamp` **[boolean][23]** Clamp output (optional, default `false`)
+*   `minIn` **[number][23]** Minimum input
+*   `maxIn` **[number][23]** Maximum input
+*   `minOut` **[number][23]** Minimum output
+*   `maxOut` **[number][23]** Maximum output
+*   `clamp` **[boolean][25]** Clamp output (optional, default `false`)
 
 ### Examples
 
@@ -327,7 +352,7 @@ myScale(0.5);
 // > 75
 ```
 
-Returns **[Function][24]**&#x20;
+Returns **[Function][26]**&#x20;
 
 ## linearToDecibel
 
@@ -337,7 +362,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -347,7 +372,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## mtof
 
@@ -355,7 +380,7 @@ Convert a MIDI note to frequency
 
 ### Parameters
 
-*   `midiNote` **[number][21]** MIDI Note to convert
+*   `midiNote` **[number][23]** MIDI Note to convert
 
 ### Examples
 
@@ -365,7 +390,30 @@ const freq = mtof(69);
 // > 440
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
+
+## normalisedToHertz
+
+Convert a normalised frequency, in \[0, 1], to a frequency in Hertz.
+
+Normalised frequency of 1 is half the sample-rate (Nyquist frequency).
+
+### Parameters
+
+*   `frequencyNormalised` **[number][23]** Normalised frequency to convert
+*   `sampleRate` **[number][23]** Twice the Nyquist frequency (optional, default `{}`)
+
+    *   `sampleRate.sampleRate`   (optional, default `2`)
+
+### Examples
+
+```javascript
+import { normalisedToHertz } from '@ircam/sc-utils';
+normalisedToHertz(0.5, {sampleRate: 48000});
+// > 12000
+```
+
+Returns **[number][23]**&#x20;
 
 ## powerToDecibel
 
@@ -373,7 +421,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][21]** Value to convert
+*   `val` **[number][23]** Value to convert
 
 ### Examples
 
@@ -383,7 +431,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][21]**&#x20;
+Returns **[number][23]**&#x20;
 
 ## sleep
 
@@ -393,7 +441,7 @@ See also `delay`
 
 ### Parameters
 
-*   `sec` **[Number][21]** Number of seconds to wait
+*   `sec` **[Number][23]** Number of seconds to wait
 
 ### Examples
 
@@ -403,7 +451,7 @@ import { sleep } from '@ircam/sc-utils';
 await sleep(1);
 ```
 
-Returns **[Promise][22]**&#x20;
+Returns **[Promise][24]**&#x20;
 
 [1]: #atodb
 
@@ -419,39 +467,43 @@ Returns **[Promise][22]**&#x20;
 
 [7]: #gettime
 
-[8]: #idgenerator
+[8]: #hertztonormalised
 
-[9]: #isbrowser
+[9]: #idgenerator
 
-[10]: #isfunction
+[10]: #isbrowser
 
-[11]: #isnumber
+[11]: #isfunction
 
-[12]: #isplainobject
+[12]: #isnumber
 
-[13]: #isstring
+[13]: #isplainobject
 
-[14]: #istypedarray
+[14]: #isstring
 
-[15]: #isurl
+[15]: #istypedarray
 
-[16]: #linearscale
+[16]: #isurl
 
-[17]: #lineartodecibel
+[17]: #linearscale
 
-[18]: #mtof
+[18]: #lineartodecibel
 
-[19]: #powertodecibel
+[19]: #mtof
 
-[20]: #sleep
+[20]: #normalisedtohertz
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[21]: #powertodecibel
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[22]: #sleep
 
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+[25]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[26]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
 <!-- apistop -->
 
