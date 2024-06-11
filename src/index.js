@@ -21,6 +21,7 @@ export { isNumber } from './is-number.js';
 export { isPlainObject } from './is-plain-object.js';
 export { isString } from './is-string.js';
 export { isTypedArray } from './is-typed-array.js';
+export { isURL } from './is-url.js';
 
 // ---------------------------------------------------
 // Maths

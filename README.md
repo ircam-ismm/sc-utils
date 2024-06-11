@@ -1,4 +1,4 @@
-# @ircam/sc-utils
+# sc-utils
 
 Simple generic utilities (type check, common math functions, etc.)
 
@@ -29,11 +29,12 @@ npm install --save @ircam/sc-utils
 *   [isPlainObject][12]
 *   [isString][13]
 *   [isTypedArray][14]
-*   [linearScale][15]
-*   [linearToDecibel][16]
-*   [mtof][17]
-*   [powerToDecibel][18]
-*   [sleep][19]
+*   [isURL][15]
+*   [linearScale][16]
+*   [linearToDecibel][17]
+*   [mtof][18]
+*   [powerToDecibel][19]
+*   [sleep][20]
 
 ## atodb
 
@@ -43,7 +44,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -53,7 +54,7 @@ atodb(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## dbtoa
 
@@ -63,7 +64,7 @@ Convert a dB into linear gain
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -73,7 +74,7 @@ dbtoa(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## decibelToLinear
 
@@ -83,7 +84,7 @@ Convert a dB into linear gain (i.e. gain)
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -93,7 +94,7 @@ decibelToLinear(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## decibelToPower
 
@@ -101,7 +102,7 @@ Convert a dB into power gain
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -111,7 +112,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## delay
 
@@ -121,7 +122,7 @@ See also `sleep`
 
 ### Parameters
 
-*   `ms` **[Number][20]** Number of milliseconds to wait
+*   `ms` **[Number][21]** Number of milliseconds to wait
 
 ### Examples
 
@@ -131,7 +132,7 @@ import { delay } from '@ircam/sc-utils';
 await delay(1000);
 ```
 
-Returns **[Promise][21]**&#x20;
+Returns **[Promise][22]**&#x20;
 
 ## ftom
 
@@ -139,7 +140,7 @@ Convert a frequency in Hz to a MIDI note
 
 ### Parameters
 
-*   `freq` **[number][20]** Frequency to convert
+*   `freq` **[number][21]** Frequency to convert
 
 ### Examples
 
@@ -149,7 +150,7 @@ const freq = ftom(440);
 // > 69
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## getTime
 
@@ -193,7 +194,7 @@ isBrowser();
 // > true|false
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
 
 ## isFunction
 
@@ -211,7 +212,7 @@ isFunction(() => {});
 // > true
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
 
 ## isNumber
 
@@ -230,7 +231,7 @@ isNumber(42);
 // > true
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
 
 ## isPlainObject
 
@@ -248,7 +249,7 @@ isObject({ a: 1 });
 // > true
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
 
 ## isString
 
@@ -266,7 +267,7 @@ isString('test');
 // > true
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
 
 ## isTypedArray
 
@@ -284,7 +285,26 @@ isTypedArray(new Float32Array([1, 2, 3]));
 // > true
 ```
 
-Returns **[boolean][22]**&#x20;
+Returns **[boolean][23]**&#x20;
+
+## isURL
+
+Check if the value is a valid URL
+
+### Parameters
+
+*   `url` &#x20;
+*   `val` **any** Value to check
+
+### Examples
+
+```javascript
+import { isURL } from '@ircam/sc-utils';
+isURL('http://sub.my-site.org/abcd?test=123');
+// > true
+```
+
+Returns **[boolean][23]**&#x20;
 
 ## linearScale
 
@@ -292,11 +312,11 @@ Create a scale function
 
 ### Parameters
 
-*   `minIn` **[number][20]** Minimum input
-*   `maxIn` **[number][20]** Maximum input
-*   `minOut` **[number][20]** Minimum output
-*   `maxOut` **[number][20]** Maximum output
-*   `clamp` **[boolean][22]** Clamp output (optional, default `false`)
+*   `minIn` **[number][21]** Minimum input
+*   `maxIn` **[number][21]** Maximum input
+*   `minOut` **[number][21]** Minimum output
+*   `maxOut` **[number][21]** Maximum output
+*   `clamp` **[boolean][23]** Clamp output (optional, default `false`)
 
 ### Examples
 
@@ -307,7 +327,7 @@ myScale(0.5);
 // > 75
 ```
 
-Returns **[Function][23]**&#x20;
+Returns **[Function][24]**&#x20;
 
 ## linearToDecibel
 
@@ -317,7 +337,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -327,7 +347,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## mtof
 
@@ -335,7 +355,7 @@ Convert a MIDI note to frequency
 
 ### Parameters
 
-*   `midiNote` **[number][20]** MIDI Note to convert
+*   `midiNote` **[number][21]** MIDI Note to convert
 
 ### Examples
 
@@ -345,7 +365,7 @@ const freq = mtof(69);
 // > 440
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## powerToDecibel
 
@@ -353,7 +373,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][20]** Value to convert
+*   `val` **[number][21]** Value to convert
 
 ### Examples
 
@@ -363,7 +383,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][20]**&#x20;
+Returns **[number][21]**&#x20;
 
 ## sleep
 
@@ -373,7 +393,7 @@ See also `delay`
 
 ### Parameters
 
-*   `sec` **[Number][20]** Number of seconds to wait
+*   `sec` **[Number][21]** Number of seconds to wait
 
 ### Examples
 
@@ -383,7 +403,7 @@ import { sleep } from '@ircam/sc-utils';
 await sleep(1);
 ```
 
-Returns **[Promise][21]**&#x20;
+Returns **[Promise][22]**&#x20;
 
 [1]: #atodb
 
@@ -413,23 +433,25 @@ Returns **[Promise][21]**&#x20;
 
 [14]: #istypedarray
 
-[15]: #linearscale
+[15]: #isurl
 
-[16]: #lineartodecibel
+[16]: #linearscale
 
-[17]: #mtof
+[17]: #lineartodecibel
 
-[18]: #powertodecibel
+[18]: #mtof
 
-[19]: #sleep
+[19]: #powertodecibel
 
-[20]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[20]: #sleep
 
-[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[21]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[22]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[23]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+
+[24]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
 
 <!-- apistop -->
 

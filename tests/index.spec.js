@@ -111,6 +111,14 @@ describe('isPlainObject(val) -> boolean', () => {
   })
 });
 
+describe('isURL(val) -> boolean', () => {
+  it('should check URLs', () => {
+    const { isURL } = utils;
+    assert.equal(isURL('http://sub.my-site.org/abcd?test=123#coucou'), true);
+    assert.equal(isURL('invalid'), false);
+  })
+});
+
 describe('atodb(val) -> number', () => {
   it(`should convert linear amplitude to dB`, () => {
     const { atodb } = utils;
