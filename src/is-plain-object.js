@@ -5,8 +5,8 @@ import isPlainObj from 'is-plain-obj';
  * @param {*} val - Value to check
  * @return {boolean}
  * @example
- * import { isObject } from '@ircam/sc-utils';
- * isObject({ a: 1 });
+ * import { isPlainObject } from '@ircam/sc-utils';
+ * isPlainObject({ a: 1 });
  * // > true
  */
 export function isPlainObject(val) {
