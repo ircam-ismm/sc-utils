@@ -43,6 +43,7 @@ export { normalisedToHertz } from './normalised-to-hertz.js';
 
 export { linearScale } from './linear-scale.js';
 export { exponentialScale } from './exponential-scale.js';
+export { logarithmicScale } from './logarithmic-scale.js';
 
 // ---------------------------------------------------
 // MISC

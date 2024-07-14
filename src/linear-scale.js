@@ -1,5 +1,6 @@
 /**
- * Create a scale function
+ * Create a linear scale function.
+ *
  * @param {number} inputStart - Start value of input range
  * @param {number} inputEnd - End value of input range
  * @param {number} outputStart - Start value of output range

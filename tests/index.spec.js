@@ -311,6 +311,49 @@ describe('exponentialScale(inputStart, inputEnd, outputStart, outputEnd, base = 
   });
 });
 
+describe.only('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) -> Function', () => {
+  // tests from sc-signal
+  it(`zero range`, () => {
+    const { logarithmicScale } = utils;
+    const scale = logarithmicScale(-5, -5, 5, 5);
+
+    assert.closeTo(scale(-5), 5, 1e-9);
+    assert.closeTo(scale(-5), 5, 1e-9);
+    assert.closeTo(scale(-5), 5, 1e-9);
+  });
+
+  it(`freq to MIDI`, () => {
+    const { logarithmicScale } = utils;
+    const scale = logarithmicScale(440, 880, 69, 81);
+
+    assert.closeTo(scale(440), 69, 1e-9);
+    assert.closeTo(scale(523.251131), 72, 1e-6);
+    assert.closeTo(scale(880), 81, 1e-9);
+    assert.closeTo(scale(220), 57, 1e-9);
+    assert.closeTo(scale(1760), 93, 1e-9);
+  });
+
+  it(`freq to MIDI - start > end`, () => {
+    const { logarithmicScale } = utils;
+    const scale = logarithmicScale(880, 440, 81, 69, 0.5);
+
+    assert.closeTo(scale(440), 69, 1e-9);
+    assert.closeTo(scale(523.251131), 72, 1e-6);
+    assert.closeTo(scale(880), 81, 1e-9);
+    assert.closeTo(scale(220), 57, 1e-9);
+    assert.closeTo(scale(1760), 93, 1e-9);
+  });
+
+  it(`amplitude to decibel`, () => {
+    const { logarithmicScale } = utils;
+    const scale = logarithmicScale(1, 10, 0, 20, 10);
+
+    assert.closeTo(scale(1), 0, 1e-9);
+    assert.closeTo(scale(10), 20, 1e-9);
+    assert.closeTo(scale(0.1), -20, 1e-9);
+  });
+});
+
 describe('getTime', () => {
   it('should be re-exported from @ircam/sc-gettime', () => {
     const { getTime, isNumber } = utils;

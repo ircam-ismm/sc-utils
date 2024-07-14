@@ -1,5 +1,5 @@
 /**
- * Create an exponential scale function.
+ * Create a logarithmic scale function.
  *
  * @param {number} inputStart - Start value of input range
  * @param {number} inputEnd - End value of input range
@@ -10,11 +10,11 @@
  *
  * @example
  * const { exponentialScale } = utils;
- * const midiToFreq = exponentialScale(69, 81, 440, 880);
- * midiToFreq(57);
- * // > 220
+ * const freqToMidi = exponentialScale(69, 81, 440, 880);
+ * freqToMidi(220);
+ * // > 57
  */
-export function exponentialScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) {
+export function logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) {
   base = Math.max(0, base);
 
   const inputRange = inputEnd - inputStart;
@@ -31,7 +31,8 @@ export function exponentialScale(inputStart, inputEnd, outputStart, outputEnd, b
     const input = clip ? Math.max(inputMin, Math.min(inputMax, value)) : value;
 
     return outputStart + outputRange
-      * (Math.exp(logBase * (input - inputStart) / inputRange) - 1)
-      / (base - 1);
+      * Math.log((base - 1) * (input - inputStart) / inputRange + 1)
+      / logBase;
   }
 }
+
