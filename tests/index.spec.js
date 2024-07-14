@@ -222,7 +222,7 @@ describe(`Check frequency conversions`, () => {
 });
 
 
-describe('linearScale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function', () => {
+describe('linearScale(inputStart, inputEnd, outputStart, outputEnd, clip = false) -> Function', () => {
   it('should create scale', () => {
     const { linearScale } = utils;
     const myScale = linearScale(0, 1, 50, 100);
@@ -265,6 +265,49 @@ describe('linearScale(minIn, maxIn, minOut, maxOut, clamp = false) -> Function',
     assert.equal(myScale(1), 0);
     assert.equal(myScale(-1), 1);
     assert.equal(myScale(2), 0);
+  });
+});
+
+describe('exponentialScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) -> Function', () => {
+  // tests from sc-signal
+  it(`zero range`, () => {
+    const { exponentialScale } = utils;
+    const scale = exponentialScale(5, 5, -5, -5);
+
+    assert.closeTo(scale(5), -5, 1e-9);
+    assert.closeTo(scale(2), -5, 1e-9);
+    assert.closeTo(scale(12), -5, 1e-9);
+  });
+
+  it(`MIDI to freq`, () => {
+    const { exponentialScale } = utils;
+    const scale = exponentialScale(69, 81, 440, 880);
+
+    assert.closeTo(scale(69), 440, 1e-9);
+    assert.closeTo(scale(72), 523.251131, 1e-6);
+    assert.closeTo(scale(81), 880, 1e-9);
+    assert.closeTo(scale(57), 220, 1e-9);
+    assert.closeTo(scale(93), 1760, 1e-9);
+  });
+
+  it(`MIDI to freq - start > end`, () => {
+    const { exponentialScale } = utils;
+    const scale = exponentialScale(81, 69, 880, 440, 0.5);
+
+    assert.closeTo(scale(69), 440, 1e-9);
+    assert.closeTo(scale(72), 523.251131, 1e-6);
+    assert.closeTo(scale(81), 880, 1e-9);
+    assert.closeTo(scale(57), 220, 1e-9);
+    assert.closeTo(scale(93), 1760, 1e-9);
+  });
+
+  it(`decibel to amplitude`, () => {
+    const { exponentialScale } = utils;
+    const scale = exponentialScale(0, 20, 1, 10, 10);
+
+    assert.closeTo(scale(0), 1, 1e-9);
+    assert.closeTo(scale(20), 10, 1e-9);
+    assert.closeTo(scale(-20), 0.1, 1e-9);
   });
 });
 
