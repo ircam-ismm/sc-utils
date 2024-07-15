@@ -46,6 +46,7 @@ export { linearScale } from './linear-scale.js';
 export { exponentialScale } from './exponential-scale.js';
 export { logarithmicScale } from './logarithmic-scale.js';
 export { normalizedToTableScale } from './normalized-to-table-scale.js';
+export { tableToNormalizedScale } from './table-to-normalized-scale.js';
 
 // ---------------------------------------------------
 // MISC

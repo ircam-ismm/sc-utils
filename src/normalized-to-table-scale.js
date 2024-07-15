@@ -1,10 +1,11 @@
 import { isSequence } from './is-sequence.js';
 
 /**
- * Return a linearly interpolated value from the given transfert table
- * according to given normalized position.
+ * Create a scale function that returns a linearly interpolated value from the given 
+ * transfert table according to the given normalized position.
  *
  * @param {number[]} transfertTable - Sequence of finite numbers to use as lookup table
+ * @return {function}
  *
  * @example
  * import { normalizedToTableScale } from '@ircam/sc-utils'
@@ -25,6 +26,10 @@ export function normalizedToTableScale(transfertTable) {
   }
 
   return value => {
+    if (!Number.isFinite(value)) {
+      throw new TypeError(`Cannot execute 'normalizedToTableScale' scale function: given value is non-finite`);
+    }
+
     value = Math.min(1, Math.max(0, value));
     const index = value * (transfertTable.length - 1);
 

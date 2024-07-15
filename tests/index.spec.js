@@ -398,6 +398,35 @@ describe.only('normalizedToTableScale(lookupTable)', () => {
   });
 });
 
+describe.only('tableToNormalizedScale(lookupTable)', () => {
+  const { tableToNormalizedScale } = utils;
+  const transfertTable = [0, 0.25, 1];
+  const typedArrayTransfertTable = new Float32Array(transfertTable);
+
+  it(`should throw if wrong argument type`, () => {
+    assert.throws(() => tableToNormalizedScale(true));
+    assert.throws(() => tableToNormalizedScale(null));
+    assert.throws(() => tableToNormalizedScale({}));
+    assert.throws(() => tableToNormalizedScale([1])); // length >= 2
+  });
+
+  it(`should properly work`, () => {
+    const scale = tableToNormalizedScale(transfertTable);
+    assert.equal(scale(0), 0);
+    assert.equal(scale(1), 1);
+    assert.equal(scale(0.25), 0.5);
+    assert.equal(scale(0.125), 0.25);
+    assert.equal(scale(0.625), 0.75);
+  });
+
+  it(`should clamp to table boundaries`, () => {
+    // support typed arrays
+    const scale = tableToNormalizedScale(typedArrayTransfertTable);
+    assert.equal(scale(-1), 0);
+    assert.equal(scale(2), 1);
+  });
+});
+
 describe('getTime', () => {
   it('should be re-exported from @ircam/sc-gettime', () => {
     const { getTime, isNumber } = utils;
