@@ -119,6 +119,21 @@ describe('isURL(val) -> boolean', () => {
   })
 });
 
+describe.only('isSequence(val) -> boolean', () => {
+  it('should check sequences of finite numbers', () => {
+    const { isSequence } = utils;
+
+    assert.equal(isSequence([1, 2, 3]), true);
+    assert.equal(isSequence(new Float32Array([1, 2, 3])), true);
+    assert.equal(isSequence(null), false);
+    assert.equal(isSequence({}), false);
+    assert.equal(isSequence(undefined), false);
+    assert.equal(isSequence('test'), false);
+    assert.equal(isSequence([1, NaN]), false);
+    assert.equal(isSequence([1, Infinity]), false);
+  })
+});
+
 describe('atodb(val) -> number', () => {
   it(`should convert linear amplitude to dB`, () => {
     const { atodb } = utils;
@@ -311,7 +326,7 @@ describe('exponentialScale(inputStart, inputEnd, outputStart, outputEnd, base = 
   });
 });
 
-describe.only('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) -> Function', () => {
+describe('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 2, clip = false) -> Function', () => {
   // tests from sc-signal
   it(`zero range`, () => {
     const { logarithmicScale } = utils;
@@ -351,6 +366,35 @@ describe.only('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, ba
     assert.closeTo(scale(1), 0, 1e-9);
     assert.closeTo(scale(10), 20, 1e-9);
     assert.closeTo(scale(0.1), -20, 1e-9);
+  });
+});
+
+describe.only('normalizedToTableScale(lookupTable)', () => {
+  const { normalizedToTableScale } = utils;
+  const transfertTable = [0, 0.25, 1];
+  const typedArrayTransfertTable = new Float32Array(transfertTable);
+
+  it(`should throw if wrong argument type`, () => {
+    assert.throws(() => normalizedToTableScale(true));
+    assert.throws(() => normalizedToTableScale(null));
+    assert.throws(() => normalizedToTableScale({}));
+    assert.throws(() => normalizedToTableScale([1])); // length >= 2
+  });
+
+  it(`should properly work`, () => {
+    const scale = normalizedToTableScale(transfertTable);
+    assert.equal(scale(0), 0);
+    assert.equal(scale(1), 1);
+    assert.equal(scale(0.5), 0.25);
+    assert.equal(scale(0.25), 0.125);
+    assert.equal(scale(0.75), 0.625);
+  });
+
+  it(`should clamp to table boundaries`, () => {
+    // support typed arrays
+    const scale = normalizedToTableScale(typedArrayTransfertTable);
+    assert.equal(scale(-1), 0);
+    assert.equal(scale(2), 1);
   });
 });
 

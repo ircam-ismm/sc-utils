@@ -22,6 +22,7 @@ export { isPlainObject } from './is-plain-object.js';
 export { isString } from './is-string.js';
 export { isTypedArray } from './is-typed-array.js';
 export { isURL } from './is-url.js';
+export { isSequence } from './is-sequence.js';
 
 // ---------------------------------------------------
 // Maths
@@ -44,6 +45,7 @@ export { normalisedToHertz } from './normalised-to-hertz.js';
 export { linearScale } from './linear-scale.js';
 export { exponentialScale } from './exponential-scale.js';
 export { logarithmicScale } from './logarithmic-scale.js';
+export { normalizedToTableScale } from './normalized-to-table-scale.js';
 
 // ---------------------------------------------------
 // MISC

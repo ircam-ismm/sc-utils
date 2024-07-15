@@ -5,8 +5,8 @@
  * @param {number} inputEnd - End value of input range
  * @param {number} outputStart - Start value of output range
  * @param {number} outputEnd - End value of output range
- * @param {number} [base=2] - Base value for exponential scaling
- * @param {boolean} [clip=false] - Clip output to output range
+ * @param {number} [base=2] - Base value for exponential scaling, default to `2`
+ * @param {boolean} [clip=false] - Clip output to output range, default to `false`
  *
  * @example
  * const { exponentialScale } = utils;
