@@ -8,6 +8,7 @@ export { isPlainObject } from "./is-plain-object.js";
 export { isString } from "./is-string.js";
 export { isTypedArray } from "./is-typed-array.js";
 export { isURL } from "./is-url.js";
+export { isSequence } from "./is-sequence.js";
 export { atodb } from "./atodb.js";
 export { linearToDecibel } from "./linear-to-decibel.js";
 export { powerToDecibel } from "./power-to-decibel.js";
@@ -21,5 +22,6 @@ export { normalisedToHertz } from "./normalised-to-hertz.js";
 export { linearScale } from "./linear-scale.js";
 export { exponentialScale } from "./exponential-scale.js";
 export { logarithmicScale } from "./logarithmic-scale.js";
+export { normalizedToTableScale } from "./normalized-to-table-scale.js";
 export { idGenerator } from "./id-generator.js";
 //# sourceMappingURL=index.d.ts.map

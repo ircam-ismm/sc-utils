@@ -5,8 +5,9 @@
  * @param {number} inputEnd - End value of input range
  * @param {number} outputStart - Start value of output range
  * @param {number} outputEnd - End value of output range
- * @param {boolean} [clip=false] - Clip output to output range
+ * @param {boolean} [clip=false] - Clip output to output range, default to `false`
  * @return {Function}
+ *
  * @example
  * import { scale } from '@ircam/sc-utils';
  * const myScale = scale(0, 1, 50, 100);
