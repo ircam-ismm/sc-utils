@@ -3,6 +3,7 @@
 // ---------------------------------------------------
 
 export { isBrowser } from './is-browser.js';
+export { isTouchDevice } from './is-touch-device.js';
 
 // ---------------------------------------------------
 // Timing

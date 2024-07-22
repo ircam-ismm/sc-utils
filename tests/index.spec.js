@@ -9,6 +9,14 @@ describe('isBrowser() -> boolean', () => {
   });
 });
 
+describe('isTouchDevice() -> boolean', () => {
+  it('should return false', () => {
+    const { isTouchDevice } = utils;
+    const res = isTouchDevice();
+    assert.equal(res, false);
+  });
+});
+
 describe('delay(ms) -> Promise', () => {
   it('should wait', async () => {
     const { delay } = utils;
@@ -119,7 +127,7 @@ describe('isURL(val) -> boolean', () => {
   })
 });
 
-describe.only('isSequence(val) -> boolean', () => {
+describe('isSequence(val) -> boolean', () => {
   it('should check sequences of finite numbers', () => {
     const { isSequence } = utils;
 
@@ -369,7 +377,7 @@ describe('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 
   });
 });
 
-describe.only('normalizedToTableScale(lookupTable)', () => {
+describe('normalizedToTableScale(lookupTable)', () => {
   const { normalizedToTableScale } = utils;
   const transfertTable = [0, 0.25, 1];
   const typedArrayTransfertTable = new Float32Array(transfertTable);
@@ -398,7 +406,7 @@ describe.only('normalizedToTableScale(lookupTable)', () => {
   });
 });
 
-describe.only('tableToNormalizedScale(lookupTable)', () => {
+describe('tableToNormalizedScale(lookupTable)', () => {
   const { tableToNormalizedScale } = utils;
   const transfertTable = [0, 0.25, 1];
   const typedArrayTransfertTable = new Float32Array(transfertTable);
