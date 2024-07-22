@@ -1,4 +1,5 @@
 export { isBrowser } from "./is-browser.js";
+export { isTouchDevice } from "./is-touch-device.js";
 export { delay } from "./delay.js";
 export { sleep } from "./sleep.js";
 export { getTime } from "./get-time.js";
