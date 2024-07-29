@@ -54,3 +54,4 @@ export { tableToNormalizedScale } from './table-to-normalized-scale.js';
 // ---------------------------------------------------
 
 export { idGenerator } from './id-generator.js';
+export { counter } from './counter.js';

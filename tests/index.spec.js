@@ -194,7 +194,6 @@ describe('ftom(freq) -> number', () => {
 describe(`Check frequency conversions`, () => {
   const { hertzToNormalised, normalisedToHertz } = utils;
 
-
   const testValues = [
     [{sampleRate: 44100}, 22050, 1],
     [{sampleRate: 44100}, 0, 0],
@@ -442,3 +441,108 @@ describe('getTime', () => {
     assert.equal(isNumber(getTime()), true);
   });
 });
+
+describe('counter', () => {
+  const { counter } = utils;
+
+  it('should work with defaul values', () => {
+    const myCounter = counter();
+
+    for (let i = 0; i < 1e3; i++) {
+      assert.equal(myCounter(), i);
+    }
+  });
+
+  it('should wrap', () => {
+    const myCounter = counter(1, 3);
+
+    assert.equal(myCounter(), 1);
+    assert.equal(myCounter(), 2);
+    assert.equal(myCounter(), 3);
+    assert.equal(myCounter(), 1);
+  });
+
+  it('should handle different boundaries', () => {
+    [[-1, 1], [1, -1]].forEach(([from, to]) => {
+      const myCounter = counter(from, to);
+
+      assert.equal(myCounter(), -1);
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), 1);
+      assert.equal(myCounter(), -1);
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), 1)
+    });
+  });
+
+  it('should support decimal step', () => {
+    [[0, 1], [1, 0]].forEach(([from, to]) => {
+      const myCounter = counter(from, to, 0.1);
+
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), 0.1);
+      assert.equal(myCounter(), 0.2);
+      assert.equal(myCounter(), 0.3);
+      assert.equal(myCounter(), 0.4);
+      assert.equal(myCounter(), 0.5);
+      assert.equal(myCounter(), 0.6);
+      assert.equal(myCounter(), 0.7);
+      assert.equal(myCounter(), 0.8);
+      assert.equal(myCounter(), 0.9);
+      assert.equal(myCounter(), 1);
+      assert.equal(myCounter(), 0);
+    });
+  });
+
+  it('should wrap (negative step)', () => {
+    const myCounter = counter(3, 1, -1);
+
+    assert.equal(myCounter(), 3);
+    assert.equal(myCounter(), 2);
+    assert.equal(myCounter(), 1);
+    assert.equal(myCounter(), 3);
+  });
+
+  it('should handle different boundaries (negative step)', () => {
+    [[1, -1], [-1, 1]].forEach(([from, to]) => {
+      const myCounter = counter(from, to, -1);
+
+      assert.equal(myCounter(), 1);
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), -1);
+      assert.equal(myCounter(), 1)
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), -1);
+    });
+  });
+
+  it('should support decimal step (negative step)', () => {
+    [[1, 0], [0, 1]].forEach(([from, to]) => {
+      const myCounter = counter(from, to, -0.1);
+
+      assert.equal(myCounter(), 1);
+      assert.equal(myCounter(), 0.9);
+      assert.equal(myCounter(), 0.8);
+      assert.equal(myCounter(), 0.7);
+      assert.equal(myCounter(), 0.6);
+      assert.equal(myCounter(), 0.5);
+      assert.equal(myCounter(), 0.4);
+      assert.equal(myCounter(), 0.3);
+      assert.equal(myCounter(), 0.2);
+      assert.equal(myCounter(), 0.1);
+      assert.equal(myCounter(), 0);
+      assert.equal(myCounter(), 1);
+    });
+  });
+
+  it('should handle zero step', () => {
+    [1, 6].forEach(from => {
+      const myCounter = counter(from, 3, 0);
+
+      assert.equal(myCounter(), from);
+      assert.equal(myCounter(), from);
+      assert.equal(myCounter(), from);
+      assert.equal(myCounter(), from);
+    });
+  });
+})
