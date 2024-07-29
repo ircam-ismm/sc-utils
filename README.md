@@ -214,7 +214,7 @@ import { getTime } from '@ircam/sc-utils';
 setInterval(() => {
   const now = getTime();
   // ...
-}, 1000)
+}, 1000);
 ```
 
 ## hertzToNormalised
