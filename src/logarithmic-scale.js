@@ -5,12 +5,12 @@
  * @param {number} inputEnd - End value of input range
  * @param {number} outputStart - Start value of output range
  * @param {number} outputEnd - End value of output range
- * @param {number} [base=2] - Base value for exponential scaling, default to `2`
+ * @param {number} [base=2] - Base value for logarithmic scaling, default to `2`
  * @param {boolean} [clip=false] - Clip output to output range, default to `false`
  *
  * @example
- * const { exponentialScale } = utils;
- * const freqToMidi = exponentialScale(69, 81, 440, 880);
+ * const { logarithmicScale } = utils;
+ * const freqToMidi = logarithmicScale(440, 880, 69, 81);
  * freqToMidi(220);
  * // > 57
  */

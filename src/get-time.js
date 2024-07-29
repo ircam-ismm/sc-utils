@@ -8,6 +8,6 @@
  * setInterval(() => {
  *   const now = getTime();
  *   // ...
- * }, 1000)
+ * }, 1000);
  */
 export { getTime } from '@ircam/sc-gettime';
