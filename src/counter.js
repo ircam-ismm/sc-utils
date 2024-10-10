@@ -4,7 +4,7 @@ import NP from 'number-precision';
  * Create a counter function.
  *
  * @param {number} [from=0] - Start of the counter, included
- * @param {number} [to=Nmuber.MAX_SAFE_INTEGER] - End of the counter, included
+ * @param {number} [to=Number.MAX_SAFE_INTEGER] - End of the counter, included
  * @param {number} [step=1] - Increment / decrement step, if 0 returns `from` forever
  * @returns {Function}
  *

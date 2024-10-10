@@ -72,7 +72,7 @@ Create a counter function.
 ### Parameters
 
 *   `from` **[number][30]** Start of the counter, included (optional, default `0`)
-*   `to` **[number][30]** End of the counter, included (optional, default `Nmuber.MAX_SAFE_INTEGER`)
+*   `to` **[number][30]** End of the counter, included (optional, default `Number.MAX_SAFE_INTEGER`)
 *   `step` **[number][30]** Increment / decrement step, if 0 returns `from` forever (optional, default `1`)
 
 Returns **[Function][31]** import { counter } from '@ircam/sc-utils';

@@ -16,10 +16,10 @@
       "node": "./src/index.js",
       "types": "./types/index.d.ts"
     },
-    "./": {
-      "module": "./src/",
-      "node": "./src/",
-      "types": "./types/"
+    "./*.js": {
+      "module": "./src/*.js",
+      "node": "./src/*.js",
+      "types": "./types/*.d.ts"
     }
   },
   "scripts": {
