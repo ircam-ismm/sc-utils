@@ -217,6 +217,8 @@ setInterval(() => {
 }, 1000);
 ```
 
+Returns **[number][30]**&#x20;
+
 ## hertzToNormalised
 
 Convert a frequency in Hertz to a normalised one in \[0, 1].

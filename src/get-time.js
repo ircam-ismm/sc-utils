@@ -1,7 +1,9 @@
+import { getTime as isomorphicGetTime } from '@ircam/sc-gettime';
+
 /**
  * Provide a unified clock in seconds accross platforms, with an origin defined by
  * the start of the process.
- *
+ * @return {number}
  * @example
  * import { getTime } from '@ircam/sc-utils';
  *
@@ -10,4 +12,4 @@
  *   // ...
  * }, 1000);
  */
-export { getTime } from '@ircam/sc-gettime';
+export function getTime() { return isomorphicGetTime(); }
