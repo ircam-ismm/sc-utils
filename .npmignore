@@ -1,7 +1,8 @@
 .babelrc
 .editorconfig
-TODO.md
+.eslintrc
+.DS_Store
 
-docs
+tsconfig.json
+
 tests
-examples
