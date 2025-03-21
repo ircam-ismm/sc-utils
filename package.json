@@ -10,6 +10,10 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ircam-ismm/sc-utils.git"
+  },
   "exports": {
     ".": {
       "module": "./src/index.js",
