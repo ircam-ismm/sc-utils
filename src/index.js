@@ -38,7 +38,9 @@ export { decibelToLinear } from './decibel-to-linear.js';
 export { decibelToPower } from './decibel-to-power.js';
 
 export { ftom } from './ftom.js';
+export { midiToFrequency } from './midi-to-frequency.js';
 export { mtof } from './mtof.js';
+export { frequencyToMidi } from './frequency-to-midi.js';
 
 export { hertzToNormalised } from './hertz-to-normalised.js';
 export { normalisedToHertz } from './normalised-to-hertz.js';

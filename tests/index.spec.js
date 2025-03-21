@@ -166,7 +166,19 @@ describe('dbtoa(val) -> number', () => {
   });
 });
 
+describe('midiToFrequency(midiNote) -> number', () => {
+  it('should compute frequency from MIDI note', () => {
+    const { midiToFrequency } = utils;
 
+    assert.equal(midiToFrequency(69), 440);
+    assert.equal(midiToFrequency(69 + 12), 880);
+    assert.equal(midiToFrequency(69 - 24), 110);
+    assert.equal(parseFloat(midiToFrequency(101).toFixed(2)), 2793.83);
+    assert.equal(parseFloat(midiToFrequency(49).toFixed(2)), 138.59);
+  });
+});
+
+// alias midiToFrequency
 describe('mtof(midiNote) -> number', () => {
   it('should compute frequency from MIDI note', () => {
     const { mtof } = utils;
@@ -176,6 +188,18 @@ describe('mtof(midiNote) -> number', () => {
     assert.equal(mtof(69 - 24), 110);
     assert.equal(parseFloat(mtof(101).toFixed(2)), 2793.83);
     assert.equal(parseFloat(mtof(49).toFixed(2)), 138.59);
+  });
+});
+
+describe('frequencyToMidi(freq) -> number', () => {
+  it('should compute MIDI note from frequency', () => {
+    const { frequencyToMidi } = utils;
+
+    assert.equal(frequencyToMidi(220), 69 - 12);
+    assert.equal(frequencyToMidi(880), 69 + 12);
+    assert.equal(frequencyToMidi(110), 69 - 24);
+    assert.isBelow(Math.abs(frequencyToMidi(2793.83) - 101), 1e-3);
+    assert.isBelow(Math.abs(frequencyToMidi(138.59) - 49), 1e-3);
   });
 });
 

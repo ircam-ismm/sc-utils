@@ -1,5 +1,8 @@
 /**
  * Convert a MIDI note to frequency
+ *
+ * _Alias:_ `midiToFrequency`
+ *
  * @param {number} midiNote - MIDI Note to convert
  * @return {number}
  * @example

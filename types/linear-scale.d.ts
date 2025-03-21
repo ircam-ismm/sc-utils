@@ -9,8 +9,8 @@
  * @return {Function}
  *
  * @example
- * import { scale } from '@ircam/sc-utils';
- * const myScale = scale(0, 1, 50, 100);
+ * import { linearScale } from '@ircam/sc-utils';
+ * const myScale = linearScale(0, 1, 50, 100);
  * myScale(0.5);
  * // > 75
  */

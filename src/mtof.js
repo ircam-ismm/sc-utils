@@ -1,5 +1,9 @@
+import { midiToFrequency } from './midi-to-frequency.js';
 /**
  * Convert a MIDI note to frequency
+ *
+ * _Alias:_ `midiToFrequency`
+ *
  * @param {number} midiNote - MIDI Note to convert
  * @return {number}
  * @example
@@ -8,6 +12,5 @@
  * // > 440
  */
 export function mtof(midiNote) {
-  // https://www.music.mcgill.ca/~gary/307/week1/node28.html
-  return 440 * Math.pow(2, (midiNote - 69) / 12);
+  return midiToFrequency(midiNote);
 }
