@@ -1,6 +1,6 @@
 {
   "name": "@ircam/sc-utils",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "contributors": [
     "Benjamin Matuszewski",
     "Jean-Philippe Lambert"
@@ -32,7 +32,7 @@
     "build": "npx esbuild src/index.js --bundle --minify --format=esm --outfile=build/bundle.js",
     "lint": "eslint ./src/*.js",
     "preversion": "npm run build && npm run api && npm run types && git add -A && git commit -m 'docs: rebuild' --allow-empty",
-    "test": "mocha tests/index.spec.js",
+    "test": "mocha tests/*.spec.js",
     "types": "rm -rf types && tsc"
   },
   "license": "BSD-3-Clause",
@@ -45,6 +45,7 @@
     "@ircam/eslint-config": "^1.3.0",
     "chai": "^4.3.8",
     "eslint": "^8.48.0",
+    "fast-check": "^4.1.1",
     "jsdoc-to-readme": "^2.0.0",
     "mocha": "^10.2.0",
     "typescript": "^5.5.3"

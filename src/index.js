@@ -30,6 +30,7 @@ export { isSequence } from './is-sequence.js';
 // ---------------------------------------------------
 
 export { atodb } from './atodb.js';
+export { almostEqual, almostEqualArray } from './almostEqual.js';
 export { linearToDecibel } from './linear-to-decibel.js';
 export { powerToDecibel } from './power-to-decibel.js';
 
