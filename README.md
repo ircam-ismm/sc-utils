@@ -131,13 +131,18 @@ Create a counter function.
 *   `to` **[number][34]** End of the counter, included (optional, default `Number.MAX_SAFE_INTEGER`)
 *   `step` **[number][34]** Increment / decrement step, if 0 returns `from` forever (optional, default `1`)
 
-Returns **[Function][37]** import { counter } from '@ircam/sc-utils';
+### Examples
+
+```javascript
+import { counter } from '@ircam/sc-utils';
 const myCounter = counter(0.1, 0.3, 0.1);
 counter(); // 0.1
 counter(); // 0.2
 counter(); // 0.3
 counter(); // 0.1
-// ...
+```
+
+Returns **[Function][37]**&#x20;
 
 ## dbtoa
 

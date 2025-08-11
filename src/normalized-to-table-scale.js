@@ -1,7 +1,7 @@
 import { isSequence } from './is-sequence.js';
 
 /**
- * Create a scale function that returns a linearly interpolated value from the given 
+ * Create a scale function that returns a linearly interpolated value from the given
  * transfert table according to the given normalized position.
  *
  * @param {number[]} transfertTable - Sequence of finite numbers to use as lookup table
