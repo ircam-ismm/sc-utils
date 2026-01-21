@@ -142,27 +142,31 @@ describe('isSequence(val) -> boolean', () => {
   })
 });
 
-describe('atodb(val) -> number', () => {
-  it(`should convert linear amplitude to dB`, () => {
-    const { atodb } = utils;
+['atodb', 'linearToDecibel'].forEach((functionName) => {
+  describe(`${functionName}(val) -> number`, () => {
+    it(`should convert linear amplitude to dB`, () => {
+      const functionReference = utils[functionName];
 
-    assert.equal(atodb(1), 0);
-    assert.equal(Math.round(atodb(0.5)), -6);
-    assert.equal(Math.round(atodb(0.1)), -20);
-    assert.equal(Math.round(atodb(0.01)), -40);
-    assert.equal(Math.round(atodb(0.001)), -60);
+      assert.equal(functionReference(1), 0);
+      assert.equal(Math.round(functionReference(0.5)), -6);
+      assert.equal(Math.round(functionReference(0.1)), -20);
+      assert.equal(Math.round(functionReference(0.01)), -40);
+      assert.equal(Math.round(functionReference(0.001)), -60);
+    });
   });
 });
 
-describe('dbtoa(val) -> number', () => {
-  it(`should convert dB to linear amplitude`, () => {
-    const { dbtoa } = utils;
+['dbtoa', 'decibelToLinear'].forEach((functionName) => {
+  describe(`${functionName}(val) -> number`, () => {
+    it(`should convert dB to linear amplitude`, () => {
+      const functionReference = utils[functionName];
 
-    assert.equal(dbtoa(0), 1);
-    assert.equal(parseFloat(dbtoa(-6).toFixed(2)), 0.5);
-    assert.equal(parseFloat(dbtoa(-20).toFixed(2)), 0.1);
-    assert.equal(parseFloat(dbtoa(-40).toFixed(3)), 0.01);
-    assert.equal(parseFloat(dbtoa(-60).toFixed(4)), 0.001);
+      assert.equal(functionReference(0), 1);
+      assert.equal(parseFloat(functionReference(-6).toFixed(2)), 0.5);
+      assert.equal(parseFloat(functionReference(-20).toFixed(2)), 0.1);
+      assert.equal(parseFloat(functionReference(-40).toFixed(3)), 0.01);
+      assert.equal(parseFloat(functionReference(-60).toFixed(4)), 0.001);
+    });
   });
 });
 

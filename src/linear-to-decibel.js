@@ -13,5 +13,5 @@ import { atodb } from './atodb.js';
  * // > 1
  */
 export function linearToDecibel(val) {
-  return atodb(atodb);
+  return atodb(val);
 }
