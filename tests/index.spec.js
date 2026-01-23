@@ -1,4 +1,8 @@
-import { assert } from 'chai';
+import { describe, it } from 'node:test';
+import assert from 'node:assert/strict';
+
+import { almostEqual } from '@ircam/sc-utils/almostEqual.js';
+
 import * as utils from '../src/index.js';
 
 describe('isBrowser() -> boolean', () => {
@@ -202,8 +206,8 @@ describe('frequencyToMidi(freq) -> number', () => {
     assert.equal(frequencyToMidi(220), 69 - 12);
     assert.equal(frequencyToMidi(880), 69 + 12);
     assert.equal(frequencyToMidi(110), 69 - 24);
-    assert.isBelow(Math.abs(frequencyToMidi(2793.83) - 101), 1e-3);
-    assert.isBelow(Math.abs(frequencyToMidi(138.59) - 49), 1e-3);
+    almostEqual(0, (Math.abs(frequencyToMidi(2793.83) - 101), 1e-3));
+    almostEqual(0, (Math.abs(frequencyToMidi(138.59) - 49), 1e-3));
   });
 });
 
@@ -214,8 +218,8 @@ describe('ftom(freq) -> number', () => {
     assert.equal(ftom(220), 69 - 12);
     assert.equal(ftom(880), 69 + 12);
     assert.equal(ftom(110), 69 - 24);
-    assert.isBelow(Math.abs(ftom(2793.83) - 101), 1e-3);
-    assert.isBelow(Math.abs(ftom(138.59) - 49), 1e-3);
+    almostEqual(0, (Math.abs(ftom(2793.83) - 101), 1e-3));
+    almostEqual(0, (Math.abs(ftom(138.59) - 49), 1e-3));
   });
 });
 
@@ -233,9 +237,9 @@ describe(`Check frequency conversions`, () => {
 
   it(`should convert from Hertz values and back`, () => {
     testValues.forEach( (values) => {
-      assert.isBelow(Math.abs(normalisedToHertz(hertzToNormalised(values[1], values[0]),
+      almostEqual(0, (Math.abs(normalisedToHertz(hertzToNormalised(values[1], values[0]),
                                                 values[0])
-                              - values[1]),
+                              - values[1])),
                               1e-3,
                      `from ${values[1]} hz`);
     });
@@ -243,9 +247,9 @@ describe(`Check frequency conversions`, () => {
 
   it(`should convert from Hertz values and back`, () => {
     testValues.forEach( (values) => {
-      assert.isBelow(Math.abs(hertzToNormalised(normalisedToHertz(values[2], values[0]),
+      almostEqual(0, (Math.abs(hertzToNormalised(normalisedToHertz(values[2], values[0]),
                                                 values[0])
-                              - values[2]),
+                              - values[2])),
                               1e-3,
                      `from ${values[2]} normalised`);
     });
@@ -253,8 +257,8 @@ describe(`Check frequency conversions`, () => {
 
   it(`should conform from Hertz values`, () => {
     testValues.forEach( (values) => {
-      assert.isBelow(Math.abs(hertzToNormalised(values[1], values[0])
-                              - values[2]),
+      almostEqual(0, (Math.abs(hertzToNormalised(values[1], values[0])
+                              - values[2])),
                               1e-3,
                      `from ${values[1]} hz`);
     });
@@ -262,8 +266,8 @@ describe(`Check frequency conversions`, () => {
 
   it(`should conform from normalised values`, () => {
     testValues.forEach( (values) => {
-      assert.isBelow(Math.abs(normalisedToHertz(values[2], values[0])
-                              - values[1]),
+      almostEqual(0, (Math.abs(normalisedToHertz(values[2], values[0])
+                              - values[1])),
                      1e-3,
                      `from ${values[1]} normalised`);
     });
@@ -324,40 +328,40 @@ describe('exponentialScale(inputStart, inputEnd, outputStart, outputEnd, base = 
     const { exponentialScale } = utils;
     const scale = exponentialScale(5, 5, -5, -5);
 
-    assert.closeTo(scale(5), -5, 1e-9);
-    assert.closeTo(scale(2), -5, 1e-9);
-    assert.closeTo(scale(12), -5, 1e-9);
+    almostEqual(scale(5), -5, 1e-9);
+    almostEqual(scale(2), -5, 1e-9);
+    almostEqual(scale(12), -5, 1e-9);
   });
 
   it(`MIDI to freq`, () => {
     const { exponentialScale } = utils;
     const scale = exponentialScale(69, 81, 440, 880);
 
-    assert.closeTo(scale(69), 440, 1e-9);
-    assert.closeTo(scale(72), 523.251131, 1e-6);
-    assert.closeTo(scale(81), 880, 1e-9);
-    assert.closeTo(scale(57), 220, 1e-9);
-    assert.closeTo(scale(93), 1760, 1e-9);
+    almostEqual(scale(69), 440, 1e-9);
+    almostEqual(scale(72), 523.251131, 1e-6);
+    almostEqual(scale(81), 880, 1e-9);
+    almostEqual(scale(57), 220, 1e-9);
+    almostEqual(scale(93), 1760, 1e-9);
   });
 
   it(`MIDI to freq - start > end`, () => {
     const { exponentialScale } = utils;
     const scale = exponentialScale(81, 69, 880, 440, 0.5);
 
-    assert.closeTo(scale(69), 440, 1e-9);
-    assert.closeTo(scale(72), 523.251131, 1e-6);
-    assert.closeTo(scale(81), 880, 1e-9);
-    assert.closeTo(scale(57), 220, 1e-9);
-    assert.closeTo(scale(93), 1760, 1e-9);
+    almostEqual(scale(69), 440, 1e-9);
+    almostEqual(scale(72), 523.251131, 1e-6);
+    almostEqual(scale(81), 880, 1e-9);
+    almostEqual(scale(57), 220, 1e-9);
+    almostEqual(scale(93), 1760, 1e-9);
   });
 
   it(`decibel to amplitude`, () => {
     const { exponentialScale } = utils;
     const scale = exponentialScale(0, 20, 1, 10, 10);
 
-    assert.closeTo(scale(0), 1, 1e-9);
-    assert.closeTo(scale(20), 10, 1e-9);
-    assert.closeTo(scale(-20), 0.1, 1e-9);
+    almostEqual(scale(0), 1, 1e-9);
+    almostEqual(scale(20), 10, 1e-9);
+    almostEqual(scale(-20), 0.1, 1e-9);
   });
 });
 
@@ -367,40 +371,40 @@ describe('logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, base = 
     const { logarithmicScale } = utils;
     const scale = logarithmicScale(-5, -5, 5, 5);
 
-    assert.closeTo(scale(-5), 5, 1e-9);
-    assert.closeTo(scale(-5), 5, 1e-9);
-    assert.closeTo(scale(-5), 5, 1e-9);
+    almostEqual(scale(-5), 5, 1e-9);
+    almostEqual(scale(-5), 5, 1e-9);
+    almostEqual(scale(-5), 5, 1e-9);
   });
 
   it(`freq to MIDI`, () => {
     const { logarithmicScale } = utils;
     const scale = logarithmicScale(440, 880, 69, 81);
 
-    assert.closeTo(scale(440), 69, 1e-9);
-    assert.closeTo(scale(523.251131), 72, 1e-6);
-    assert.closeTo(scale(880), 81, 1e-9);
-    assert.closeTo(scale(220), 57, 1e-9);
-    assert.closeTo(scale(1760), 93, 1e-9);
+    almostEqual(scale(440), 69, 1e-9);
+    almostEqual(scale(523.251131), 72, 1e-6);
+    almostEqual(scale(880), 81, 1e-9);
+    almostEqual(scale(220), 57, 1e-9);
+    almostEqual(scale(1760), 93, 1e-9);
   });
 
   it(`freq to MIDI - start > end`, () => {
     const { logarithmicScale } = utils;
     const scale = logarithmicScale(880, 440, 81, 69, 0.5);
 
-    assert.closeTo(scale(440), 69, 1e-9);
-    assert.closeTo(scale(523.251131), 72, 1e-6);
-    assert.closeTo(scale(880), 81, 1e-9);
-    assert.closeTo(scale(220), 57, 1e-9);
-    assert.closeTo(scale(1760), 93, 1e-9);
+    almostEqual(scale(440), 69, 1e-9);
+    almostEqual(scale(523.251131), 72, 1e-6);
+    almostEqual(scale(880), 81, 1e-9);
+    almostEqual(scale(220), 57, 1e-9);
+    almostEqual(scale(1760), 93, 1e-9);
   });
 
   it(`amplitude to decibel`, () => {
     const { logarithmicScale } = utils;
     const scale = logarithmicScale(1, 10, 0, 20, 10);
 
-    assert.closeTo(scale(1), 0, 1e-9);
-    assert.closeTo(scale(10), 20, 1e-9);
-    assert.closeTo(scale(0.1), -20, 1e-9);
+    almostEqual(scale(1), 0, 1e-9);
+    almostEqual(scale(10), 20, 1e-9);
+    almostEqual(scale(0.1), -20, 1e-9);
   });
 });
 

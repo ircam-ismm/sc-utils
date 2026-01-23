@@ -1,4 +1,5 @@
-import { assert } from 'chai';
+import { describe, it } from 'node:test';
+import assert from 'node:assert/strict';
 
 import fc from 'fast-check';
 
@@ -8,6 +9,7 @@ describe('almostEqual', () => {
 
   it('almostEqual on numbers', () => {
 
+    // replace with replay option if needed
     const debugOptions = {};
 
     fc.assert(
