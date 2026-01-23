@@ -52,6 +52,8 @@ export { logarithmicScale } from './logarithmic-scale.js';
 export { normalizedToTableScale } from './normalized-to-table-scale.js';
 export { tableToNormalizedScale } from './table-to-normalized-scale.js';
 
+export { modulo } from './modulo.js';
+
 // ---------------------------------------------------
 // MISC
 // ---------------------------------------------------
