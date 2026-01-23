@@ -30,24 +30,26 @@ npm install --save @ircam/sc-utils
 *   [hertzToNormalised][13]
 *   [idGenerator][14]
 *   [isBrowser][15]
-*   [isFunction][16]
-*   [isNumber][17]
-*   [isPlainObject][18]
-*   [isSequence][19]
-*   [isString][20]
-*   [isTouchDevice][21]
-*   [isTypedArray][22]
-*   [isURL][23]
-*   [linearScale][24]
-*   [linearToDecibel][25]
-*   [logarithmicScale][26]
-*   [midiToFrequency][27]
-*   [mtof][28]
-*   [normalisedToHertz][29]
-*   [normalizedToTableScale][30]
-*   [powerToDecibel][31]
-*   [sleep][32]
-*   [tableToNormalizedScale][33]
+*   [isDefined][16]
+*   [isFunction][17]
+*   [isNumber][18]
+*   [isPlainObject][19]
+*   [isSequence][20]
+*   [isString][21]
+*   [isTouchDevice][22]
+*   [isTypedArray][23]
+*   [isURL][24]
+*   [linearScale][25]
+*   [linearToDecibel][26]
+*   [logarithmicScale][27]
+*   [midiToFrequency][28]
+*   [modulo][29]
+*   [mtof][30]
+*   [normalisedToHertz][31]
+*   [normalizedToTableScale][32]
+*   [powerToDecibel][33]
+*   [sleep][34]
+*   [tableToNormalizedScale][35]
 
 ## almostEqual
 
@@ -56,9 +58,9 @@ tolerance.
 
 ### Parameters
 
-*   `value` **[number][34]** The first value to compare.
-*   `reference` **[number][34]** The second value to compare.
-*   `tolerance` **[number][34]** The tolerance within
+*   `value` **[number][36]** The first value to compare.
+*   `reference` **[number][36]** The second value to compare.
+*   `tolerance` **[number][36]** The tolerance within
     which the values are considered equal.
     Note: tolerance must take into account the sum of all relative and
     absolute errors. (optional, default `Number.EPSILON`)
@@ -72,7 +74,7 @@ almostEqual(0.1 + 0.2, 1e-18); // false
 almostEqual(0.1, 0.11, 0.02); // true
 ```
 
-Returns **[boolean][35]** Returns `true` if the values are approximately
+Returns **[boolean][37]** Returns `true` if the values are approximately
 equal, otherwise `false`.
 
 ## almostEqualArray
@@ -84,9 +86,9 @@ within a given tolerance.
 
 ### Parameters
 
-*   `value` **[Array][36]<[number][34]>** The first array to compare.
-*   `reference` **[Array][36]<[number][34]>** The second array to compare.
-*   `tolerance` **[number][34]** The tolerance within which the
+*   `value` **[Array][38]<[number][36]>** The first array to compare.
+*   `reference` **[Array][38]<[number][36]>** The second array to compare.
+*   `tolerance` **[number][36]** The tolerance within which the
     values are considered equal.
     Note: tolerance must take into account the sum of all relative and
     absolute errors. (optional, default `Number.EPSILON`)
@@ -98,7 +100,7 @@ import { almostEqualArray } from '@ircam/sc-utils';
 almostEqualArray([0.1, 0.1 + 0.2], [0.1, 0.3]); // true
 ```
 
-Returns **[boolean][35]** Returns `true` if the arrays have got the same size, and
+Returns **[boolean][37]** Returns `true` if the arrays have got the same size, and
 if every value of the same index are approximately equal. Otherwise `false`.
 
 ## atodb
@@ -109,7 +111,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -119,7 +121,7 @@ atodb(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## counter
 
@@ -127,9 +129,9 @@ Create a counter function.
 
 ### Parameters
 
-*   `from` **[number][34]** Start of the counter, included (optional, default `0`)
-*   `to` **[number][34]** End of the counter, included (optional, default `Number.MAX_SAFE_INTEGER`)
-*   `step` **[number][34]** Increment / decrement step, if 0 returns `from` forever (optional, default `1`)
+*   `from` **[number][36]** Start of the counter, included (optional, default `0`)
+*   `to` **[number][36]** End of the counter, included (optional, default `Number.MAX_SAFE_INTEGER`)
+*   `step` **[number][36]** Increment / decrement step, if 0 returns `from` forever (optional, default `1`)
 
 ### Examples
 
@@ -142,7 +144,7 @@ counter(); // 0.3
 counter(); // 0.1
 ```
 
-Returns **[Function][37]**&#x20;
+Returns **[Function][39]**&#x20;
 
 ## dbtoa
 
@@ -152,7 +154,7 @@ Convert a dB into linear gain
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -162,7 +164,7 @@ dbtoa(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## decibelToLinear
 
@@ -172,7 +174,7 @@ Convert a dB into linear gain (i.e. gain)
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -182,7 +184,7 @@ decibelToLinear(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## decibelToPower
 
@@ -190,7 +192,7 @@ Convert a dB into power gain
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -200,7 +202,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## delay
 
@@ -210,7 +212,7 @@ See also `sleep`
 
 ### Parameters
 
-*   `ms` **[Number][34]** Number of milliseconds to wait
+*   `ms` **[Number][36]** Number of milliseconds to wait
 
 ### Examples
 
@@ -220,7 +222,7 @@ import { delay } from '@ircam/sc-utils';
 await delay(1000);
 ```
 
-Returns **[Promise][38]**&#x20;
+Returns **[Promise][40]**&#x20;
 
 ## exponentialScale
 
@@ -228,12 +230,12 @@ Create an exponential scale function.
 
 ### Parameters
 
-*   `inputStart` **[number][34]** Start value of input range
-*   `inputEnd` **[number][34]** End value of input range
-*   `outputStart` **[number][34]** Start value of output range
-*   `outputEnd` **[number][34]** End value of output range
-*   `base` **[number][34]** Base value for exponential scaling, default to `2` (optional, default `2`)
-*   `clip` **[boolean][35]** Clip output to output range, default to `false` (optional, default `false`)
+*   `inputStart` **[number][36]** Start value of input range
+*   `inputEnd` **[number][36]** End value of input range
+*   `outputStart` **[number][36]** Start value of output range
+*   `outputEnd` **[number][36]** End value of output range
+*   `base` **[number][36]** Base value for exponential scaling, default to `2` (optional, default `2`)
+*   `clip` **[boolean][37]** Clip output to output range, default to `false` (optional, default `false`)
 
 ### Examples
 
@@ -250,7 +252,7 @@ Convert a frequency in Hz to a MIDI note
 
 ### Parameters
 
-*   `freq` **[number][34]** Frequency to convert
+*   `freq` **[number][36]** Frequency to convert
 
 ### Examples
 
@@ -260,7 +262,7 @@ const freq = frequencyToMidi(440);
 // > 69
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## ftom
 
@@ -270,7 +272,7 @@ Convert a frequency in Hz to a MIDI note
 
 ### Parameters
 
-*   `freq` **[number][34]** Frequency to convert
+*   `freq` **[number][36]** Frequency to convert
 
 ### Examples
 
@@ -280,7 +282,7 @@ const freq = ftom(440);
 // > 69
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## getTime
 
@@ -298,7 +300,7 @@ setInterval(() => {
 }, 1000);
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## hertzToNormalised
 
@@ -308,8 +310,8 @@ Normalised frequency of 1 is half the sample-rate (Nyquist frequency).
 
 ### Parameters
 
-*   `frequencyHertz` **[number][34]** Frequency in Hertz to convert
-*   `sampleRate` **[number][34]** Twice the Nyquist frequency (optional, default `{}`)
+*   `frequencyHertz` **[number][36]** Frequency in Hertz to convert
+*   `sampleRate` **[number][36]** Twice the Nyquist frequency (optional, default `{}`)
 
     *   `sampleRate.sampleRate`   (optional, default `2`)
 
@@ -321,7 +323,7 @@ hertzToNormalised(12000, {sampleRate: 48000});
 // > 0.5
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## idGenerator
 
@@ -351,7 +353,29 @@ isBrowser();
 // > true|false
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
+
+## isDefined
+
+Check if the value is defined.
+
+### Parameters
+
+*   `val` **any** Value to check
+
+### Examples
+
+```javascript
+import { isDefined } from '@ircam/sc-utils';
+isDefined(42); // true
+isDefined(undefined); // false
+isDefined(); // false
+isDefined(null); // true
+isDefined(NaN); // true
+isDefined(0); // true
+```
+
+Returns **[boolean][37]**&#x20;
 
 ## isFunction
 
@@ -369,7 +393,7 @@ isFunction(() => {});
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isNumber
 
@@ -388,7 +412,7 @@ isNumber(42);
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isPlainObject
 
@@ -406,7 +430,7 @@ isPlainObject({ a: 1 });
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isSequence
 
@@ -424,7 +448,7 @@ isSequence([1, 2, 3]);
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isString
 
@@ -442,7 +466,7 @@ isString('test');
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isTouchDevice
 
@@ -456,7 +480,7 @@ isTouchDevice();
 // > true|false
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isTypedArray
 
@@ -474,7 +498,7 @@ isTypedArray(new Float32Array([1, 2, 3]));
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## isURL
 
@@ -493,7 +517,7 @@ isURL('http://sub.my-site.org/abcd?test=123');
 // > true
 ```
 
-Returns **[boolean][35]**&#x20;
+Returns **[boolean][37]**&#x20;
 
 ## linearScale
 
@@ -501,11 +525,11 @@ Create a linear scale function.
 
 ### Parameters
 
-*   `inputStart` **[number][34]** Start value of input range
-*   `inputEnd` **[number][34]** End value of input range
-*   `outputStart` **[number][34]** Start value of output range
-*   `outputEnd` **[number][34]** End value of output range
-*   `clip` **[boolean][35]** Clip output to output range, default to `false` (optional, default `false`)
+*   `inputStart` **[number][36]** Start value of input range
+*   `inputEnd` **[number][36]** End value of input range
+*   `outputStart` **[number][36]** Start value of output range
+*   `outputEnd` **[number][36]** End value of output range
+*   `clip` **[boolean][37]** Clip output to output range, default to `false` (optional, default `false`)
 
 ### Examples
 
@@ -516,7 +540,7 @@ myScale(0.5);
 // > 75
 ```
 
-Returns **[Function][37]**&#x20;
+Returns **[Function][39]**&#x20;
 
 ## linearToDecibel
 
@@ -526,7 +550,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -536,7 +560,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## logarithmicScale
 
@@ -544,12 +568,12 @@ Create a logarithmic scale function.
 
 ### Parameters
 
-*   `inputStart` **[number][34]** Start value of input range
-*   `inputEnd` **[number][34]** End value of input range
-*   `outputStart` **[number][34]** Start value of output range
-*   `outputEnd` **[number][34]** End value of output range
-*   `base` **[number][34]** Base value for logarithmic scaling, default to `2` (optional, default `2`)
-*   `clip` **[boolean][35]** Clip output to output range, default to `false` (optional, default `false`)
+*   `inputStart` **[number][36]** Start value of input range
+*   `inputEnd` **[number][36]** End value of input range
+*   `outputStart` **[number][36]** Start value of output range
+*   `outputEnd` **[number][36]** End value of output range
+*   `base` **[number][36]** Base value for logarithmic scaling, default to `2` (optional, default `2`)
+*   `clip` **[boolean][37]** Clip output to output range, default to `false` (optional, default `false`)
 
 ### Examples
 
@@ -566,7 +590,7 @@ Convert a MIDI note to frequency
 
 ### Parameters
 
-*   `midiNote` **[number][34]** MIDI Note to convert
+*   `midiNote` **[number][36]** MIDI Note to convert
 
 ### Examples
 
@@ -576,7 +600,42 @@ const freq = midiToFrequency(69);
 // > 440
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
+
+## modulo
+
+*   **See**: [https://en.wikipedia.org/wiki/Modulo][41]
+
+Calculates the modulo operation with an optional offset.
+
+### Parameters
+
+*   `value` **[number][36]** The value to apply the modulo operation to.
+*   `modulus` **[number][36]** The modulus divisor.
+*   `offset` **[number][36]** Optional offset to apply before and after the modulo operation. (optional, default `0`)
+
+### Examples
+
+```javascript
+modulo(-1, 360); // returns 359
+modulo(1, 360); // returns 1
+modulo(-1, -360); // returns -1
+modulo(1, -360); // returns -359
+```
+
+```javascript
+modulo(-1, 360, -180); // returns -1
+modulo(1, 360, -180); // returns 1
+modulo(-1, -360, 180); // returns -1
+modulo(1, -360, 180); // returns 1
+```
+
+Returns **[number][36]** The result of the modulo operation adjusted by the offset.
+without offset:
+result in \[0, modulus] for modulus > 0
+result in \[modulus, 0] for modulus < 0with offset:
+result in \[offset, offset + modulus] for modulus > 0
+result in \[modulus + offset, offset] for modulus < 0
 
 ## mtof
 
@@ -586,7 +645,7 @@ Convert a MIDI note to frequency
 
 ### Parameters
 
-*   `midiNote` **[number][34]** MIDI Note to convert
+*   `midiNote` **[number][36]** MIDI Note to convert
 
 ### Examples
 
@@ -596,7 +655,7 @@ const freq = mtof(69);
 // > 440
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## normalisedToHertz
 
@@ -606,8 +665,8 @@ Normalised frequency of 1 is half the sample-rate (Nyquist frequency).
 
 ### Parameters
 
-*   `frequencyNormalised` **[number][34]** Normalised frequency to convert
-*   `sampleRate` **[number][34]** Twice the Nyquist frequency (optional, default `{}`)
+*   `frequencyNormalised` **[number][36]** Normalised frequency to convert
+*   `sampleRate` **[number][36]** Twice the Nyquist frequency (optional, default `{}`)
 
     *   `sampleRate.sampleRate`   (optional, default `2`)
 
@@ -619,7 +678,7 @@ normalisedToHertz(0.5, {sampleRate: 48000});
 // > 12000
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## normalizedToTableScale
 
@@ -628,7 +687,7 @@ transfert table according to the given normalized position.
 
 ### Parameters
 
-*   `transfertTable` **[Array][36]<[number][34]>** Sequence of finite numbers to use as lookup table
+*   `transfertTable` **[Array][38]<[number][36]>** Sequence of finite numbers to use as lookup table
 
 ### Examples
 
@@ -642,7 +701,7 @@ scale(0.75); // 3
 scale(1);    // 4
 ```
 
-Returns **[function][37]**&#x20;
+Returns **[function][39]**&#x20;
 
 ## powerToDecibel
 
@@ -650,7 +709,7 @@ Convert a linear gain into dB
 
 ### Parameters
 
-*   `val` **[number][34]** Value to convert
+*   `val` **[number][36]** Value to convert
 
 ### Examples
 
@@ -660,7 +719,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][34]**&#x20;
+Returns **[number][36]**&#x20;
 
 ## sleep
 
@@ -670,7 +729,7 @@ See also `delay`
 
 ### Parameters
 
-*   `sec` **[Number][34]** Number of seconds to wait
+*   `sec` **[Number][36]** Number of seconds to wait
 
 ### Examples
 
@@ -680,7 +739,7 @@ import { sleep } from '@ircam/sc-utils';
 await sleep(1);
 ```
 
-Returns **[Promise][38]**&#x20;
+Returns **[Promise][40]**&#x20;
 
 ## tableToNormalizedScale
 
@@ -689,7 +748,7 @@ table according to the given value.
 
 ### Parameters
 
-*   `transfertTable` **[Array][36]<[number][34]>** Sequence of finite numbers to use as lookup table
+*   `transfertTable` **[Array][38]<[number][36]>** Sequence of finite numbers to use as lookup table
 
 ### Examples
 
@@ -703,7 +762,7 @@ scale(3);    // 0.75
 scale(4);    // 1
 ```
 
-Returns **[function][37]**&#x20;
+Returns **[function][39]**&#x20;
 
 [1]: #almostequal
 
@@ -735,51 +794,57 @@ Returns **[function][37]**&#x20;
 
 [15]: #isbrowser
 
-[16]: #isfunction
+[16]: #isdefined
 
-[17]: #isnumber
+[17]: #isfunction
 
-[18]: #isplainobject
+[18]: #isnumber
 
-[19]: #issequence
+[19]: #isplainobject
 
-[20]: #isstring
+[20]: #issequence
 
-[21]: #istouchdevice
+[21]: #isstring
 
-[22]: #istypedarray
+[22]: #istouchdevice
 
-[23]: #isurl
+[23]: #istypedarray
 
-[24]: #linearscale
+[24]: #isurl
 
-[25]: #lineartodecibel
+[25]: #linearscale
 
-[26]: #logarithmicscale
+[26]: #lineartodecibel
 
-[27]: #miditofrequency
+[27]: #logarithmicscale
 
-[28]: #mtof
+[28]: #miditofrequency
 
-[29]: #normalisedtohertz
+[29]: #modulo
 
-[30]: #normalizedtotablescale
+[30]: #mtof
 
-[31]: #powertodecibel
+[31]: #normalisedtohertz
 
-[32]: #sleep
+[32]: #normalizedtotablescale
 
-[33]: #tabletonormalizedscale
+[33]: #powertodecibel
 
-[34]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
+[34]: #sleep
 
-[35]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
+[35]: #tabletonormalizedscale
 
-[36]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+[36]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number
 
-[37]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+[37]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean
 
-[38]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+[38]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+[39]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/function
+
+[40]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+[41]: https://en.wikipedia.org/wiki/Modulo
 
 <!-- apistop -->
 
