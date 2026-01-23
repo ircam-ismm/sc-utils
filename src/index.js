@@ -17,6 +17,7 @@ export { getTime } from './get-time.js';
 // Type check
 // ---------------------------------------------------
 
+export { isDefined } from './is-defined.js';
 export { isFunction } from './is-function.js';
 export { isNumber } from './is-number.js';
 export { isPlainObject } from './is-plain-object.js';
