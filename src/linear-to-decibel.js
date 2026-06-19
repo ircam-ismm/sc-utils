@@ -6,7 +6,7 @@ import { atodb } from './atodb.js';
  * _Alias:_ `atodb`
  *
  * @param {number} val - Value to convert
- * @return {number}
+ * @return {Function}
  * @example
  * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);

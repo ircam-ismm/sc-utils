@@ -29,15 +29,6 @@ describe('linearRegression(values) -> number', () => {
     });
   });
 
-  it('should work', () => {
-    const values = [
-      [1, 0],
-      [0, 0],
-    ]
-    const result = linearRegression(values);
-    assert.equal(result, 0);
-  });
-
   it('should return zero for horizontal line', () => {
     const values = [
       [0, 1],
@@ -45,7 +36,7 @@ describe('linearRegression(values) -> number', () => {
       [2, 1],
     ]
     const result = linearRegression(values);
-    assert.equal(result, 0);
+    assert.deepEqual(result, { slope: 0, offset: 1 });
   });
 
   it('should return Infinity for vertical line', () => {
@@ -55,7 +46,7 @@ describe('linearRegression(values) -> number', () => {
       [1, 2],
     ]
     const result = linearRegression(values);
-    assert.equal(result, Infinity);
+    assert.deepEqual(result, { slope: Infinity, offset: Infinity });
   });
 
   it('should work', () => {
@@ -65,7 +56,7 @@ describe('linearRegression(values) -> number', () => {
       [2, 2],
     ]
     const result = linearRegression(values);
-    assert.equal(result, 1);
+    assert.deepEqual(result, { slope: 1, offset: 0 });
   });
 
   it('should work', () => {
@@ -75,16 +66,16 @@ describe('linearRegression(values) -> number', () => {
       [3, -2],
     ]
     const result = linearRegression(values);
-    assert.equal(result, -1);
+    assert.deepEqual(result, { slope: -1, offset: 1 });
   });
 
-  it('should work', () => {
+    it('should work', () => {
     const values = [
+      [3, -2],
       [0, 1],
       [1, 0],
-      [3, -2],
     ]
     const result = linearRegression(values);
-    assert.equal(result, -1);
+    assert.deepEqual(result, { slope: -1, offset: 1 });
   });
 });

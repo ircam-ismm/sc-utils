@@ -524,8 +524,6 @@ Returns **[boolean][38]**&#x20;
 
 Perform a linear regression on a list of \[x, y] tuples.
 
-Throws if values length < 2
-
 ### Parameters
 
 *   `values` **[Array][39]<[Array][39]<[number][37]>>** List of \[x, y] tuples
@@ -533,14 +531,15 @@ Throws if values length < 2
 ### Examples
 
 ```javascript
-import { frequencyToMidi } from '@ircam/sc-utils';
-const freq = frequencyToMidi(440);
-// > 69
+import { linearRegression } from '@ircam/sc-utils';
+const slope = linearRegression([[0, 1], [1, 2]]);
+// > { slope: 1, offset: 1 }
 ```
 
-*   Throws **any** Throws if `values.length < 2` or if an elements of the list is not a \[x, y] tuple of finite numbers
+*   Throws **[Error][42]** if `values.length < 2` or if any elements of the list is
+    not a \[x, y] tuple of finite numbers
 
-Returns **[number][37]** Slope
+Returns **[object][43]** An object containing the slope and offset
 
 ## linearScale
 
@@ -583,7 +582,7 @@ decibelToPower(0);
 // > 1
 ```
 
-Returns **[number][37]**&#x20;
+Returns **[Function][40]**&#x20;
 
 ## logarithmicScale
 
@@ -627,7 +626,7 @@ Returns **[number][37]**&#x20;
 
 ## modulo
 
-*   **See**: [https://en.wikipedia.org/wiki/Modulo][42]
+*   **See**: [https://en.wikipedia.org/wiki/Modulo][44]
 
 Calculates the modulo operation with an optional offset.
 
@@ -869,7 +868,11 @@ Returns **[function][40]**&#x20;
 
 [41]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise
 
-[42]: https://en.wikipedia.org/wiki/Modulo
+[42]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Error
+
+[43]: https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object
+
+[44]: https://en.wikipedia.org/wiki/Modulo
 
 <!-- apistop -->
 

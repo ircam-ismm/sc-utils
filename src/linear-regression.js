@@ -1,15 +1,14 @@
 /**
- * Perform a linear regression on a list of [x, y] tuples.
- *
- * Throws if values length < 2
+ * Perform a simple linear regression on a list of [x, y] tuples.
  *
  * @param {Array.<Array.<number>>} values - List of [x, y] tuples
- * @return {number} - Slope
- * @throws - Throws if `values.length < 2` or if an elements of the list is not a [x, y] tuple of finite numbers
+ * @return {object} - An object containing the `slope` and `offset`
+ * @throws {Error}- if `values.length < 2` or if any elements of the list is
+ *  not a [x, y] tuple of finite numbers
  * @example
- * import { frequencyToMidi } from '@ircam/sc-utils';
- * const freq = frequencyToMidi(440);
- * // > 69
+ * import { linearRegression } from '@ircam/sc-utils';
+ * const slope = linearRegression([[0, 1], [1, 2]]);
+ * // > { slope: 1, offset: 1 }
  */
 export function linearRegression(values) {
   if (values.length < 2) {
@@ -58,12 +57,12 @@ export function linearRegression(values) {
 
   // vertical line
   if (sumDiffXMeanSquared === 0) {
-    return Infinity;
+    return { slope: Infinity, offset: Infinity };
   }
 
   // horizontal line
   if (sumDiffYMeanSquared === 0) {
-    return 0;
+    return { slope: 0, offset: yMean };
   }
 
   // Pearson correlation coefficient:
@@ -79,13 +78,13 @@ export function linearRegression(values) {
   // then we have:
   // cf. https://www.youtube.com/watch?v=GhrxgbQnEEU
   //
-  // y = a + bx
+  // y = ax + b
   // where:
   //         Sy
-  // b = r * --
+  // a = r * --
   //         Sx
   //
-  // a = yMean - b * xMean
+  // b = yMean - a * xMean
   //
   // S for standard deviation
   //            ∑ [ pow((x - xMean), 2) ]
@@ -93,7 +92,8 @@ export function linearRegression(values) {
   //                      N - 1
   const Sx = Math.sqrt(sumDiffXMeanSquared / (length - 1));
   const Sy = Math.sqrt(sumDiffYMeanSquared / (length - 1));
-  const b = r * (Sy / Sx);
+  const slope = r * (Sy / Sx);
+  const offset = yMean - slope * xMean;
 
-  return b;
+  return { slope, offset };
 }
