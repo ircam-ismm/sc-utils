@@ -522,7 +522,7 @@ Returns **[boolean][38]**&#x20;
 
 ## linearRegression
 
-Perform a linear regression on a list of \[x, y] tuples.
+Perform a simple linear regression on a list of \[x, y] tuples.
 
 ### Parameters
 
@@ -539,7 +539,7 @@ const slope = linearRegression([[0, 1], [1, 2]]);
 *   Throws **[Error][42]** if `values.length < 2` or if any elements of the list is
     not a \[x, y] tuple of finite numbers
 
-Returns **[object][43]** An object containing the slope and offset
+Returns **[object][43]** An object containing the `slope` and `offset`
 
 ## linearScale
 

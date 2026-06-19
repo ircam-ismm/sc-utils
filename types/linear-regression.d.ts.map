@@ -1,1 +1,1 @@
-{"version":3,"file":"linear-regression.d.ts","sourceRoot":"","sources":["../src/linear-regression.js"],"names":[],"mappings":"AAAA;;;;;;;;;;;;GAYG;AACH,yCARW,KAAK,CAAE,KAAK,CAAE,MAAM,CAAC,CAAC,GACrB,MAAM,CA4FjB"}
+{"version":3,"file":"linear-regression.d.ts","sourceRoot":"","sources":["../src/linear-regression.js"],"names":[],"mappings":"AAAA;;;;;;;;;;;GAWG;AACH,yCATW,KAAK,CAAE,KAAK,CAAE,MAAM,CAAC,CAAC,GACrB,MAAM,CA8FjB"}

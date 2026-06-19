@@ -4,11 +4,11 @@
  * _Alias:_ `atodb`
  *
  * @param {number} val - Value to convert
- * @return {number}
+ * @return {Function}
  * @example
  * import { decibelToPower } from '@ircam/sc-utils';
  * decibelToPower(0);
  * // > 1
  */
-export function linearToDecibel(val: number): number;
+export function linearToDecibel(val: number): Function;
 //# sourceMappingURL=linear-to-decibel.d.ts.map
