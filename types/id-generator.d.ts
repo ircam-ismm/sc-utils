@@ -9,5 +9,5 @@
  * const generator = idGenerator();
  * const id = generator.next().value
  */
-export function idGenerator(): Iterator;
+export function idGenerator(): Iterator<any, any, any>;
 //# sourceMappingURL=id-generator.d.ts.map
