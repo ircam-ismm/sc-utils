@@ -29,6 +29,7 @@ export { logarithmicScale } from "./logarithmic-scale.js";
 export { normalizedToTableScale } from "./normalized-to-table-scale.js";
 export { tableToNormalizedScale } from "./table-to-normalized-scale.js";
 export { modulo } from "./modulo.js";
+export { linearRegression } from "./linear-regression.js";
 export { idGenerator } from "./id-generator.js";
 export { counter } from "./counter.js";
 export { almostEqual, almostEqualArray } from "./almostEqual.js";
