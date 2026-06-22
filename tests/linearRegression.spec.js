@@ -5,8 +5,6 @@ import fc from 'fast-check';
 
 import {
   linearRegression,
-} from '@ircam/sc-utils/linear-regression.js';
-import {
   almostEqual,
 } from '@ircam/sc-utils';
 

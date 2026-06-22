@@ -54,6 +54,7 @@ export { normalizedToTableScale } from './normalized-to-table-scale.js';
 export { tableToNormalizedScale } from './table-to-normalized-scale.js';
 
 export { modulo } from './modulo.js';
+export { linearRegression } from './linear-regression.js';
 
 // ---------------------------------------------------
 // MISC
