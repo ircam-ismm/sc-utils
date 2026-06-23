@@ -31,7 +31,7 @@
     "api": "jsdoc-to-readme --src src/*.js --heading-depth 2",
     "build": "npx esbuild src/index.js --bundle --minify --format=esm --outfile=build/bundle.js",
     "lint": "npx eslint ./src ./tests",
-    "preversion": "npm run build && npm run api && npm run types && git add -A && git commit -m 'docs: rebuild' --allow-empty",
+    "preversion": "npm run lint && npm run build && npm run api && npm run types && git add -A && git commit -m 'docs: rebuild' --allow-empty",
     "test": "node --test tests/*.spec.js",
     "test:watch": "node --test --watch tests/*.spec.js",
     "types": "rm -rf types && tsc"
