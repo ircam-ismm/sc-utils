@@ -33,5 +33,5 @@ export function exponentialScale(inputStart, inputEnd, outputStart, outputEnd, b
     return outputStart + outputRange
       * (Math.exp(logBase * (input - inputStart) / inputRange) - 1)
       / (base - 1);
-  }
+  };
 }

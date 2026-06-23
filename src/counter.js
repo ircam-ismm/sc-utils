@@ -18,7 +18,11 @@ import NP from 'number-precision';
 export function counter(from = 0, to = Number.MAX_SAFE_INTEGER, step = 1) {
   if (step === 0) {
     // just return `from` forever
-    function* iter() { while(true) yield from }
+    function* iter() {
+      while (true) {
+        yield from;
+      } 
+    }
     const sequence = iter();
 
     return () => sequence.next().value;
@@ -31,7 +35,7 @@ export function counter(from = 0, to = Number.MAX_SAFE_INTEGER, step = 1) {
   function* iter() {
     for (let i = start; true; i = NP.plus(i, step)) {
       if ((step > 0 && i > end) || (step < 0 && i < end)) {
-        i = start
+        i = start;
       }
 
       yield i;

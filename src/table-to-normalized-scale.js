@@ -52,5 +52,5 @@ export function tableToNormalizedScale(transfertTable) {
     }
 
     return position;
-  }
+  };
 }

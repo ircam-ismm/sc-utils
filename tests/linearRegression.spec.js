@@ -1,11 +1,8 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
-import fc from 'fast-check';
-
 import {
   linearRegression,
-  almostEqual,
 } from '@ircam/sc-utils';
 
 describe('linearRegression(values) -> number', () => {
@@ -32,7 +29,7 @@ describe('linearRegression(values) -> number', () => {
       [0, 1],
       [1, 1],
       [2, 1],
-    ]
+    ];
     const result = linearRegression(values);
     assert.deepEqual(result, { slope: 0, offset: 1 });
   });
@@ -42,7 +39,7 @@ describe('linearRegression(values) -> number', () => {
       [1, 0],
       [1, 1],
       [1, 2],
-    ]
+    ];
     const result = linearRegression(values);
     assert.deepEqual(result, { slope: Infinity, offset: Infinity });
   });
@@ -52,7 +49,7 @@ describe('linearRegression(values) -> number', () => {
       [-1, -1],
       [0, 0],
       [2, 2],
-    ]
+    ];
     const result = linearRegression(values);
     assert.deepEqual(result, { slope: 1, offset: 0 });
   });
@@ -62,17 +59,17 @@ describe('linearRegression(values) -> number', () => {
       [0, 1],
       [1, 0],
       [3, -2],
-    ]
+    ];
     const result = linearRegression(values);
     assert.deepEqual(result, { slope: -1, offset: 1 });
   });
 
-    it('should work', () => {
+  it('should work', () => {
     const values = [
       [3, -2],
       [0, 1],
       [1, 0],
-    ]
+    ];
     const result = linearRegression(values);
     assert.deepEqual(result, { slope: -1, offset: 1 });
   });

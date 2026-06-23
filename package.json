@@ -30,7 +30,7 @@
   "scripts": {
     "api": "jsdoc-to-readme --src src/*.js --heading-depth 2",
     "build": "npx esbuild src/index.js --bundle --minify --format=esm --outfile=build/bundle.js",
-    "lint": "eslint ./src/*.js",
+    "lint": "npx eslint ./src ./tests",
     "preversion": "npm run build && npm run api && npm run types && git add -A && git commit -m 'docs: rebuild' --allow-empty",
     "test": "node --test tests/*.spec.js",
     "test:watch": "node --test --watch tests/*.spec.js",
@@ -43,7 +43,7 @@
     "number-precision": "^1.6.0"
   },
   "devDependencies": {
-    "@ircam/eslint-config": "^2.0.1",
+    "@ircam/eslint-config": "^2.1.0",
     "esbuild": "^0.28.1",
     "eslint": "^10.5.0",
     "fast-check": "^4.1.1",

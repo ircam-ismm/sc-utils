@@ -19,19 +19,16 @@ describe('almostEqual', () => {
         (value, tolerance) => {
 
           assert(almostEqual(value, value, tolerance),
-            `Same value must be equal for any tolerance: value: ${value}, tolerance: ${tolerance}`,
-          );
+            `Same value must be equal for any tolerance: value: ${value}, tolerance: ${tolerance}`);
 
           // tolerance must sum all possible computation errors
           const range = Math.max(Math.abs(value), Math.abs(tolerance));
 
           assert(almostEqual(value, value + Math.sign(value) * tolerance, 2 * tolerance),
-            `Absolute tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-          );
+            `Absolute tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
 
           assert(almostEqual(value, value * range, 2 * range),
-            `Relative tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-          );
+            `Relative tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
 
           const differentValue = Math.sign(value) * Math.max(
             Math.abs(value + Math.sign(value) * range),
@@ -41,13 +38,14 @@ describe('almostEqual', () => {
             && Math.abs(differentValue) !== Infinity
           ) {
             assert(!almostEqual(value, differentValue, 0.5 * range),
-              `Tolerance too relaxed: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-            );
+              `Tolerance too relaxed: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
           }
 
-        }), {
+        },
+      ), {
         ...debugOptions,
-      });
+      },
+    );
   }); // almostEqual
 
   it('almostEqualArray on arrays of numbers', () => {
@@ -62,20 +60,16 @@ describe('almostEqual', () => {
 
           // tolerance should sum all possible computation errors
           const range = Math.max(Math.abs(tolerance),
-            value.reduce((max, v) => Math.max(max, Math.abs(v)), 0),
-          );
+            value.reduce((max, v) => Math.max(max, Math.abs(v)), 0));
 
           assert(almostEqualArray(value, value.map(v => v + Math.sign(v) * tolerance), 2 * tolerance),
-            `Absolute tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-          );
+            `Absolute tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
 
           assert(almostEqualArray(value, value.map(v => v * range), 2 * range),
-            `Relative tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-          );
+            `Relative tolerance too strict: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
 
           assert(!almostEqualArray(value, value.concat([0])),
-            `Different size arrays should not be equal: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-          );
+            `Different size arrays should not be equal: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
 
           const differentValue = value.map(v => {
             const dv = Math.sign(v) * Math.max(
@@ -87,12 +81,12 @@ describe('almostEqual', () => {
 
           if (differentValue.some((dv, i) => dv !== value[i])) {
             assert(!almostEqualArray(value, differentValue, 0.5 * range),
-              `Tolerance too relaxed: value: ${value}, tolerance: ${tolerance}, range: ${range}`,
-            );
+              `Tolerance too relaxed: value: ${value}, tolerance: ${tolerance}, range: ${range}`);
           }
 
 
-        }), {
+        },
+      ), {
         ...debugOptions,
       },
     );

@@ -43,7 +43,8 @@ describe('modulo', () => {
             );
           }
 
-        }), {
+        },
+      ), {
         ...debugOptions,
       },
     );

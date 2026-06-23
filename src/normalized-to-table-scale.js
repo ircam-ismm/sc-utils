@@ -38,5 +38,5 @@ export function normalizedToTableScale(transfertTable) {
     const k = index - Math.floor(index);
 
     return prev + (next - prev) * k;
-  }
+  };
 }

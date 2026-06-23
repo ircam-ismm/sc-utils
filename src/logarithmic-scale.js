@@ -33,6 +33,6 @@ export function logarithmicScale(inputStart, inputEnd, outputStart, outputEnd, b
     return outputStart + outputRange
       * Math.log((base - 1) * (input - inputStart) / inputRange + 1)
       / logBase;
-  }
+  };
 }
 

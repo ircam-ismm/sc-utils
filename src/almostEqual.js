@@ -36,7 +36,7 @@ export function almostEqual(value, reference, tolerance = Number.EPSILON) {
     return true;
   }
 
-  if (Number.isNaN(value) && Number.isNaN(reference) ) {
+  if (Number.isNaN(value) && Number.isNaN(reference)) {
     return true;
   }
 

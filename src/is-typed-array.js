@@ -9,7 +9,7 @@
  */
 export function isTypedArray(val) {
   return (
-       val instanceof Int8Array
+    val instanceof Int8Array
     || val instanceof Int16Array
     || val instanceof Int32Array
     || val instanceof Uint8Array
@@ -18,5 +18,5 @@ export function isTypedArray(val) {
     || val instanceof Uint32Array
     || val instanceof Float32Array
     || val instanceof Float64Array
-  )
+  );
 }

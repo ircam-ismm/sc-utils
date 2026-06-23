@@ -12,4 +12,6 @@ import { getTime as isomorphicGetTime } from '@ircam/sc-gettime';
  *   // ...
  * }, 1000);
  */
-export function getTime() { return isomorphicGetTime(); }
+export function getTime() {
+  return isomorphicGetTime(); 
+}

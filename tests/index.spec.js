@@ -50,10 +50,10 @@ describe('idGenerator() -> Iterator', () => {
     const { idGenerator } = utils;
     const generator = idGenerator();
 
-    const zero = generator.next().value
+    const zero = generator.next().value;
     assert.equal(zero, 0);
 
-    const one = generator.next().value
+    const one = generator.next().value;
     assert.equal(one, 1);
   });
 });
@@ -69,7 +69,7 @@ describe('isString(val) -> boolean', () => {
     assert.equal(isString(true), false);
     assert.equal(isString({}), false);
     assert.equal(isString([]), false);
-  })
+  });
 });
 
 describe('isFunction(val) -> boolean', () => {
@@ -84,7 +84,7 @@ describe('isFunction(val) -> boolean', () => {
     assert.equal(isFunction(true), false);
     assert.equal(isFunction({}), false);
     assert.equal(isFunction([]), false);
-  })
+  });
 });
 
 describe('isNumber(val) -> boolean', () => {
@@ -105,7 +105,7 @@ describe('isNumber(val) -> boolean', () => {
     assert.equal(isNumber('0'), false);
     assert.equal(isNumber({}), false);
     assert.equal(isNumber([]), false);
-  })
+  });
 });
 
 describe('isPlainObject(val) -> boolean', () => {
@@ -120,7 +120,7 @@ describe('isPlainObject(val) -> boolean', () => {
     assert.equal(isPlainObject(true), false);
     assert.equal(isPlainObject(() => {}), false);
     assert.equal(isPlainObject([]), false);
-  })
+  });
 });
 
 describe('isURL(val) -> boolean', () => {
@@ -128,7 +128,7 @@ describe('isURL(val) -> boolean', () => {
     const { isURL } = utils;
     assert.equal(isURL('http://sub.my-site.org/abcd?test=123#coucou'), true);
     assert.equal(isURL('invalid'), false);
-  })
+  });
 });
 
 describe('isSequence(val) -> boolean', () => {
@@ -143,7 +143,7 @@ describe('isSequence(val) -> boolean', () => {
     assert.equal(isSequence('test'), false);
     assert.equal(isSequence([1, NaN]), false);
     assert.equal(isSequence([1, Infinity]), false);
-  })
+  });
 });
 
 ['atodb', 'linearToDecibel'].forEach((functionName) => {
@@ -227,49 +227,41 @@ describe(`Check frequency conversions`, () => {
   const { hertzToNormalised, normalisedToHertz } = utils;
 
   const testValues = [
-    [{sampleRate: 44100}, 22050, 1],
-    [{sampleRate: 44100}, 0, 0],
-    [{sampleRate: 30}, 15, 1],
-    [{sampleRate: 30}, 0, 0],
-    [{sampleRate: 30}, 7.5, 0.5],
-    [{sampleRate: 2}, 1.22, 1.22],
+    [{ sampleRate: 44100 }, 22050, 1],
+    [{ sampleRate: 44100 }, 0, 0],
+    [{ sampleRate: 30 }, 15, 1],
+    [{ sampleRate: 30 }, 0, 0],
+    [{ sampleRate: 30 }, 7.5, 0.5],
+    [{ sampleRate: 2 }, 1.22, 1.22],
   ];
 
   it(`should convert from Hertz values and back`, () => {
-    testValues.forEach( (values) => {
+    testValues.forEach((values) => {
       almostEqual(0, (Math.abs(normalisedToHertz(hertzToNormalised(values[1], values[0]),
-                                                values[0])
-                              - values[1])),
-                              1e-3,
-                     `from ${values[1]} hz`);
+        values[0])
+                              - values[1])), 1e-3, `from ${values[1]} hz`);
     });
   });
 
   it(`should convert from Hertz values and back`, () => {
-    testValues.forEach( (values) => {
+    testValues.forEach((values) => {
       almostEqual(0, (Math.abs(hertzToNormalised(normalisedToHertz(values[2], values[0]),
-                                                values[0])
-                              - values[2])),
-                              1e-3,
-                     `from ${values[2]} normalised`);
+        values[0])
+                              - values[2])), 1e-3, `from ${values[2]} normalised`);
     });
   });
 
   it(`should conform from Hertz values`, () => {
-    testValues.forEach( (values) => {
+    testValues.forEach((values) => {
       almostEqual(0, (Math.abs(hertzToNormalised(values[1], values[0])
-                              - values[2])),
-                              1e-3,
-                     `from ${values[1]} hz`);
+                              - values[2])), 1e-3, `from ${values[1]} hz`);
     });
   });
 
   it(`should conform from normalised values`, () => {
-    testValues.forEach( (values) => {
+    testValues.forEach((values) => {
       almostEqual(0, (Math.abs(normalisedToHertz(values[2], values[0])
-                              - values[1])),
-                     1e-3,
-                     `from ${values[1]} normalised`);
+                              - values[1])), 1e-3, `from ${values[1]} normalised`);
     });
   });
 
@@ -503,7 +495,7 @@ describe('counter', () => {
       assert.equal(myCounter(), 1);
       assert.equal(myCounter(), -1);
       assert.equal(myCounter(), 0);
-      assert.equal(myCounter(), 1)
+      assert.equal(myCounter(), 1);
     });
   });
 
@@ -542,7 +534,7 @@ describe('counter', () => {
       assert.equal(myCounter(), 1);
       assert.equal(myCounter(), 0);
       assert.equal(myCounter(), -1);
-      assert.equal(myCounter(), 1)
+      assert.equal(myCounter(), 1);
       assert.equal(myCounter(), 0);
       assert.equal(myCounter(), -1);
     });
@@ -577,4 +569,4 @@ describe('counter', () => {
       assert.equal(myCounter(), from);
     });
   });
-})
+});
