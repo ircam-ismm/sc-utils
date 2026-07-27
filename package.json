@@ -16,13 +16,11 @@
   },
   "exports": {
     ".": {
-      "module": "./src/index.js",
-      "node": "./src/index.js",
+      "default": "./src/index.js",
       "types": "./types/index.d.ts"
     },
     "./*.js": {
-      "module": "./src/*.js",
-      "node": "./src/*.js",
+      "default": "./src/*.js",
       "types": "./types/*.d.ts"
     }
   },
