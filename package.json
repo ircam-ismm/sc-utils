@@ -16,12 +16,12 @@
   },
   "exports": {
     ".": {
-      "default": "./src/index.js",
-      "types": "./types/index.d.ts"
+      "types": "./types/index.d.ts",
+      "default": "./src/index.js"
     },
     "./*.js": {
-      "default": "./src/*.js",
-      "types": "./types/*.d.ts"
+      "types": "./types/*.d.ts",
+      "default": "./src/*.js"
     }
   },
   "unpkg": "./build/bundle.js",
